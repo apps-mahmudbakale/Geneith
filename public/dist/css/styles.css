@@ -1,0 +1,47 @@
+#result
+{
+    position:absolute;
+    width:700px;
+    display:none;
+    margin-top:-1px;
+    border-top:0px;
+    overflow:hidden;
+    border:1px #CDCDCD solid;
+    background-color: white;
+}
+.show
+{
+    font-family:tahoma;
+    padding:10px;
+    border-bottom:1px #CDCDCD dashed;
+    font-size:15px;
+}
+.show:hover
+{
+    background:#364956;
+    color:#FFF;
+    cursor:pointer;
+}
+.modal-body{
+  max-height: 1000px !important;
+  height: 440px !important;
+}
+#dept{
+  height: 100px !important;
+}
+
+#vendor{
+  height: 430px !important;
+}
+
+.btn-app{
+    min-width: 130px !important;
+    height: 70px !important;
+}
+#cash{
+  height: 100px !important;
+}
+
+#payout{
+  height: 380px !important;
+}
