@@ -48,6 +48,11 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('sales/print/{invoice}', [SaleController::class, 'saveSalePrint']);
     Route::get('sales/cancel/{invoice}', [SaleController::class, 'cancelSale']);
     Route::get('sales-print/{invoice}', [SaleController::class, 'printInvoice'])->name('sales.print');
+    Route::get('generalReport', [DashboardController::class, 'generalReport'])->name('general.report');
+    Route::get('endOfDayReport', [DashboardController::class, 'endOfDayView'])->name('endofDay.view');
+    Route::post('endDayReport', [DashboardController::class, 'endOfDayReport'])->name('endofDay.report');
+    Route::get('customReport', [DashboardController::class, 'customReportView'])->name('custom.report.view');
+    Route::post('customReport', [DashboardController::class, 'customReport'])->name('custom.report');
     Route::resource('settings', SettingsController::class)->except('store','update', 'edit', 'show', 'destroy');
     Route::post('settings', [SettingsController::class, 'updateStoreSettings'])->name('update.store.settings');
 });

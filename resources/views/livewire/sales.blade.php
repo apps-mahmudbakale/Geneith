@@ -1,5 +1,7 @@
+<div>
 @role('admin|store')
-<x-store-products :products="$products" />
+<x-sales :sales="$sales" />
 @else
-<x-user-products :products="$products" />
+<x-user-sales :sales="$sales" />
 @endrole
+</div>

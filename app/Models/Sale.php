@@ -14,6 +14,7 @@ class Sale extends Model
         'product_id',
         'qty',
         'amount',
+        'station_id',
         'user_id'
     ];
 }

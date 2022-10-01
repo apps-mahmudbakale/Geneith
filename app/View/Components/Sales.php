@@ -11,9 +11,10 @@ class Sales extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $sales;
+    public function __construct($sales)
     {
-        //
+        $this->sales = $sales;
     }
 
     /**

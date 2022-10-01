@@ -16,14 +16,14 @@ class ProductsImport implements ToCollection,  WithHeadingRow
         if(auth()->user()->hasRole('admin|store')){
             foreach ($rows as $row) 
             {
-                $store = Store::where('name', $row[0])->first();
+                $store = Store::where('name', $row['store'])->first();
                 Product::create([
                     'store_id' => $store->id,
-                    'name' => $row[1],
-                    'buying_price' => $row[2],
-                    'selling_price' => $row[3],
-                    'qty' => $row[4],
-                    'expiry_date' => $row[5],
+                    'name' => $row['product'],
+                    'buying_price' => $row['cost'],
+                    'selling_price' => $row['cost'] * 1.6,
+                    'qty' => $row['quantity'],
+                    'expiry_date' => $row['expiry'],
                 ]);
             }
         }else{

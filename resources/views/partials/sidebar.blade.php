@@ -112,30 +112,23 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="GeneralReport.php" class="nav-link">
+                            <a href="{{route('app.general.report')}}" class="nav-link">
                               <i class="fa fa-table nav-icon"></i>
                               <p>General Report</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="EndofDay.php" class="nav-link">
+                            <a href="{{route('app.endofDay.view')}}" class="nav-link">
                               <i class="fa fa-calendar nav-icon"></i>
                               <p>End of Day Report</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="customReport.php" class="nav-link">
+                            <a href="{{route('app.custom.report.view')}}" class="nav-link">
                               <i class="fa fa-clock nav-icon"></i>
                               <p>Custom Report</p>
                             </a>
                           </li>
-                           <li class="nav-item">
-                            <a href="UsersReport.php" class="nav-link">
-                              <i class="fa fa-cubes nav-icon"></i>
-                              <p>Users Sales Report</p>
-                            </a>
-                          </li>
-                  
                         </ul>
                       </li>
                       <li class="nav-item">

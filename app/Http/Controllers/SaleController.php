@@ -60,6 +60,7 @@ class SaleController extends Controller
         $products = DB::table('station_products')
             ->join('products', 'products.id', '=', 'station_products.product_id')
             ->where('products.name', 'like', '%' . $keyword . '%')
+            ->where('station_products.quantity', '>=', '1')
             ->get();
         echo '<ul class="nav flex-column">';
         foreach ($products as $product) {
@@ -103,11 +104,12 @@ class SaleController extends Controller
                 'product_id' => $order->product_id,
                 'qty' => $order->quantity,
                 'amount' => $order->amount,
-                'user_id' => 1
+                'station_id' => auth()->user()->station->id,
+                'user_id' => auth()->user()->id
             ]);
-            $product = DB::table('products')
-                            ->where('id',  $order->product_id)
-                            ->update(['qty' => DB::raw('qty - '.$order->quantity)]);
+            $product = DB::table('station_products')
+                            ->where('product_id',  $order->product_id)
+                            ->update(['quantity' => DB::raw('quantity - '.$order->quantity)]);
         }
         $invoice = Invoice::create([
             'invoice' => $invoice,
@@ -130,9 +132,9 @@ class SaleController extends Controller
                 'amount' => $order->amount,
                 'user_id' => 1
             ]);
-            $product = DB::table('products')
-                            ->where('id',  $order->product_id)
-                            ->update(['qty' => DB::raw('qty - '.$order->quantity)]);
+            $product = DB::table('station_products')
+                ->where('product_id',  $order->product_id)
+                ->update(['quantity' => DB::raw('quantity - '.$order->quantity)]);
         }
         $invoices = Invoice::create([
             'invoice' => $invoice,
