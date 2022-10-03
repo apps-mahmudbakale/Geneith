@@ -132,29 +132,23 @@
                         </ul>
                       </li>
                       <li class="nav-item">
-                        <a href="invoices.php" class="nav-link">
+                        <a href="" class="nav-link">
                           <i class="nav-icon fa fa-file-invoice"></i>
                           <p>Invoices</p>
                         </a>
                       </li>
                   
-                  <li class="nav-item">
-                    <a href="" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="nav-link">
-                      <i class="nav-icon fa fa-power-off"></i>
-                      <p>Logout</p>
-                    </a>
-                  </li>
-           
-                    <li class="nav-item">
-                      <a href="sales_dashboard.php" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                      </a>
-                    </li>
                 <li class="nav-item">
                   <a href="{{route('app.settings.index')}}" class="nav-link">
                     <i class="nav-icon fa fa-cogs"></i>
                     <p>Settings</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="nav-link">
+                    <i class="nav-icon fa fa-power-off"></i>
+                    <p>Logout</p>
                   </a>
                 </li>
                

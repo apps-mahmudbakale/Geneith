@@ -33,7 +33,7 @@ class ProductsImport implements ToCollection,  WithHeadingRow
                 ->insert([
                     'station_id' => auth()->user()->station->id,
                     'product_id' => $row['product'],
-                    'quantity' => $row['qty']
+                    'quantity' => $row['approved']
                 ]);
 
                $product = DB::table('products')
