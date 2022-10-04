@@ -34,7 +34,15 @@ class DashboardController extends Controller
         $products = Product::count();
         $sales = Sale::count();
         $sales_cash = Sale::sum('amount');
-        return view('home', compact('users', 'products','sales', 'sales_cash'));
+        $products_cash = Product::all()->sum(function($t){
+            return $t->selling_price * $t->qty;
+        });
+        $query = DB::table('sales')
+                        ->join('products', 'products.id', '=', 'sales.product_id')
+                        ->select(DB::raw('SUM(products.selling_price * sales.qty) - SUM(products.buying_price * sales.qty) as profit'))->first();
+        $profit = $query->profit;
+        // dd($query->profit);
+        return view('home', compact('users', 'products','sales', 'sales_cash', 'products_cash', 'profit'));
     }
 
     public function generalReport()

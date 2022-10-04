@@ -10,7 +10,10 @@ class SettingsController extends Controller
     public function index(StoreSettings $settings)
     {
         $currencies = ['&#36;','&#8361;','&#8364;', '&#8377;', '&#8358;', '&#165;'];
-        return view('settings.index', compact('settings', 'currencies'));
+        $audits = \OwenIt\Auditing\Models\Audit::with('user')
+        ->orderBy('created_at', 'desc')                
+        ->get();
+        return view('settings.index', compact('settings', 'currencies', 'audits'));
     }
 
     public function updateStoreSettings(Request $request, StoreSettings $settings)

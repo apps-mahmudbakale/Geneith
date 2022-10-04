@@ -20,11 +20,11 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -35,6 +35,7 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'c61477e527f72a7ad38836f1c1ac4bb0' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/helpers.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
@@ -129,6 +130,7 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         'O' => 
         array (
             'OwenIt\\Auditing\\' => 16,
+            'Opcodes\\LogViewer\\' => 18,
         ),
         'N' => 
         array (
@@ -458,6 +460,10 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         array (
             0 => __DIR__ . '/..' . '/owen-it/laravel-auditing/src',
         ),
+        'Opcodes\\LogViewer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/opcodesio/log-viewer/src',
+        ),
         'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
@@ -712,6 +718,7 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
+        'App\\Providers\\LaravelBackupPanelServiceProvider' => __DIR__ . '/../..' . '/app/Providers/LaravelBackupPanelServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Settings\\StoreSettings' => __DIR__ . '/../..' . '/app/Settings/StoreSettings.php',
         'App\\View\\Components\\Sales' => __DIR__ . '/../..' . '/app/View/Components/Sales.php',
@@ -4330,6 +4337,30 @@ class ComposerStaticInit23159e62680857e12e71a04f456485f1
         'NunoMaduro\\Collision\\Provider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Provider.php',
         'NunoMaduro\\Collision\\SolutionsRepositories\\NullSolutionsRepository' => __DIR__ . '/..' . '/nunomaduro/collision/src/SolutionsRepositories/NullSolutionsRepository.php',
         'NunoMaduro\\Collision\\Writer' => __DIR__ . '/..' . '/nunomaduro/collision/src/Writer.php',
+        'Opcodes\\LogViewer\\Benchmark' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Benchmark.php',
+        'Opcodes\\LogViewer\\Concerns\\HasLocalCache' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Concerns/HasLocalCache.php',
+        'Opcodes\\LogViewer\\Console\\Commands\\GenerateDummyLogsCommand' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Console/Commands/GenerateDummyLogsCommand.php',
+        'Opcodes\\LogViewer\\Events\\LogFileDeleted' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Events/LogFileDeleted.php',
+        'Opcodes\\LogViewer\\Exceptions\\InvalidRegularExpression' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Exceptions/InvalidRegularExpression.php',
+        'Opcodes\\LogViewer\\Facades\\LogViewer' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Facades/LogViewer.php',
+        'Opcodes\\LogViewer\\Http\\Controllers\\DownloadFileController' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Controllers/DownloadFileController.php',
+        'Opcodes\\LogViewer\\Http\\Controllers\\DownloadFolderController' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Controllers/DownloadFolderController.php',
+        'Opcodes\\LogViewer\\Http\\Controllers\\IndexController' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Controllers/IndexController.php',
+        'Opcodes\\LogViewer\\Http\\Controllers\\IsScanRequiredController' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Controllers/IsScanRequiredController.php',
+        'Opcodes\\LogViewer\\Http\\Controllers\\ScanFilesController' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Controllers/ScanFilesController.php',
+        'Opcodes\\LogViewer\\Http\\Livewire\\FileList' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Livewire/FileList.php',
+        'Opcodes\\LogViewer\\Http\\Livewire\\LogList' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Http/Livewire/LogList.php',
+        'Opcodes\\LogViewer\\Level' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Level.php',
+        'Opcodes\\LogViewer\\LevelCount' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LevelCount.php',
+        'Opcodes\\LogViewer\\Log' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/Log.php',
+        'Opcodes\\LogViewer\\LogFile' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogFile.php',
+        'Opcodes\\LogViewer\\LogFileCollection' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogFileCollection.php',
+        'Opcodes\\LogViewer\\LogFolder' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogFolder.php',
+        'Opcodes\\LogViewer\\LogFolderCollection' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogFolderCollection.php',
+        'Opcodes\\LogViewer\\LogReader' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogReader.php',
+        'Opcodes\\LogViewer\\LogViewerService' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogViewerService.php',
+        'Opcodes\\LogViewer\\LogViewerServiceProvider' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/LogViewerServiceProvider.php',
+        'Opcodes\\LogViewer\\PreferenceStore' => __DIR__ . '/..' . '/opcodesio/log-viewer/src/PreferenceStore.php',
         'OwenIt\\Auditing\\Audit' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Audit.php',
         'OwenIt\\Auditing\\Auditable' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Auditable.php',
         'OwenIt\\Auditing\\AuditableObserver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/AuditableObserver.php',

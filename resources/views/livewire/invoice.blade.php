@@ -43,6 +43,8 @@
                                             <td>{{$invoice->invoice}}</td>
                                             <td>
                                                 <div class="btn-group">
+                                                    <a href="{{route('app.sales.print', $invoice->invoice)}}" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-eye"></i></a>
                                                     <a href="{{route('app.invoices.edit', $invoice->id)}}" class="btn btn-info btn-sm">
                                                         <i class="fa fa-edit"></i></a>
                                                         <button class="btn btn-danger btn-sm" id="del{{ $invoice->id }}"

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '49cb095980326bd325c0c8cf8b96ebb9e0bc2ab0',
+        'reference' => 'ae0ac2f1e4d7e7b9ae968711a1764d27f05c4cf7',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -415,7 +415,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '49cb095980326bd325c0c8cf8b96ebb9e0bc2ab0',
+            'reference' => 'ae0ac2f1e4d7e7b9ae968711a1764d27f05c4cf7',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -647,6 +647,15 @@
             'install_path' => __DIR__ . '/../nunomaduro/termwind',
             'aliases' => array(),
             'reference' => '10065367baccf13b6e30f5e9246fa4f63a79eb1d',
+            'dev_requirement' => false,
+        ),
+        'opcodesio/log-viewer' => array(
+            'pretty_version' => 'v1.5.0',
+            'version' => '1.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../opcodesio/log-viewer',
+            'aliases' => array(),
+            'reference' => '6a6a753cf8e4dc7b092faaf68e725e3a0ccc105c',
             'dev_requirement' => false,
         ),
         'owen-it/laravel-auditing' => array(

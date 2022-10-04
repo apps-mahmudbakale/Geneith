@@ -62,6 +62,24 @@
                 display: none !important;
             }
         }
+
+        #scissors {
+            height: 43px;
+            /* image height */
+            width: 90%;
+            margin: auto auto;
+            background-image: url('{{asset('cXciH.png')}}');
+            background-repeat: no-repeat;
+            background-position: right;
+            position: relative;
+        }
+
+        #scissors div {
+            position: relative;
+            top: 50%;
+            border-top: 3px dashed black;
+            margin-top: -3px;
+        }
     </style>
 </head>
 
@@ -80,18 +98,57 @@
                 <tr>
                     <th class="description">Description</th>
                     <th class="quantity">Q.</th>
-                    <th class="price">&#8358;</th>
+                    <th class="price">{!! app(App\Settings\StoreSettings::class)->currency !!}</th>
                     <th class="price" style="max-width: 50px; width: 51px;">Subtotal</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($items as $item)
+                    <tr>
+                        <td class="description" style="text-align: center;">{{ $item->product }}</td>
+                        <td class="quantity" style="text-align: center;">{{ $item->qty }}</td>
+                        <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->selling_price }}</td>
+                        <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->amount }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <br>
+
+        <p class="centered">Thanks for your purchase!
+            <br>Geneith Okma
+        </p>
+        <div id="scissors">
+            <div></div>
+        </div>
+    </div>
+
+    <div class="ticket" align="center" style="max-width: 1000px; width: 328px;">
+        <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/settings/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
+            alt="Logo" style="width: 100px">
+        <br>
+        {{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}
+        <p class="centered">PURCHASE RECEIPT
+            <br>Birnin Kebbi, Kebbi State
+            <br>
+            Date: <?php echo date('d/m/Y'); ?>
+        <table style="font-size: 24px; font-weight: bold; width: inherit;">
+            <thead>
                 <tr>
-                    <td class="description" style="text-align: center;">{{$item->name}}</td>
-                    <td class="quantity" style="text-align: center;">{{$item->qty}}</td>
-                    <td class="price" style="text-align: center;">&#8358; {{$item->selling_price}}</td>
-                    <td class="price" style="text-align: center;">&#8358; {{$item->amount}}</td>
-                  </tr>
+                    <th class="description">Description</th>
+                    <th class="quantity">Q.</th>
+                    <th class="price">{!! app(App\Settings\StoreSettings::class)->currency !!}</th>
+                    <th class="price" style="max-width: 50px; width: 51px;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($items as $item)
+                    <tr>
+                        <td class="description" style="text-align: center;">{{ $item->product }}</td>
+                        <td class="quantity" style="text-align: center;">{{ $item->qty }}</td>
+                        <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->selling_price }}</td>
+                        <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->amount }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

@@ -155,6 +155,7 @@ class SaleController extends Controller
     public function printInvoice($invoice)
     {
         $items = DB::table('sales')
+            ->select('sales.*','products.name as product', 'products.selling_price')
             ->join('products', 'products.id', '=', 'sales.product_id')
             ->where('sales.invoice', $invoice)
             ->get();
