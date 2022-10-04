@@ -90,9 +90,10 @@
         <br>
         {{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}
         <p class="centered">PURCHASE RECEIPT
-            <br>Birnin Kebbi, Kebbi State
+            <br>{{app(App\Settings\StoreSettings::class)->store_address}}
             <br>
             Date: <?php echo date('d/m/Y'); ?>
+            {{$invoice}}
         <table style="font-size: 24px; font-weight: bold; width: inherit;">
             <thead>
                 <tr>
@@ -114,7 +115,9 @@
             </tbody>
         </table>
         <br>
-
+        <p class="centered">Transaction Processed By
+            <br>{{ucfirst($user->name)}}
+        </p>
         <p class="centered">Thanks for your purchase!
             <br>Geneith Okma
         </p>
@@ -129,9 +132,9 @@
         <br>
         {{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}
         <p class="centered">PURCHASE RECEIPT
-            <br>Birnin Kebbi, Kebbi State
+            <br>{{app(App\Settings\StoreSettings::class)->store_address}}
             <br>
-            Date: <?php echo date('d/m/Y'); ?>
+            Date: {{ date('d/m/Y') }}  {{$invoice}}
         <table style="font-size: 24px; font-weight: bold; width: inherit;">
             <thead>
                 <tr>
@@ -150,10 +153,18 @@
                         <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->amount }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td>Total:</td>
+                    <td></td>
+                    <td></td>
+                    <td>{!! app(App\Settings\StoreSettings::class)->currency !!} {{number_format($sum->sum)}}</td>
+                </tr>
             </tbody>
         </table>
         <br>
-
+        <p class="centered">Transaction Processed By
+            <br>{{ucfirst($user->name)}}
+        </p>
         <p class="centered">Thanks for your purchase!
             <br>Geneith Okma
         </p>

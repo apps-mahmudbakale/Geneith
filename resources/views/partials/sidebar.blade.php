@@ -101,11 +101,18 @@
                               </li>
                           @endcan
                           <li class="nav-item">
-                              <a href="{{ route('app.sales.index') }}" class="nav-link">
-                                  <i class="fa fa-table nav-icon"></i>
-                                  <p>Manage Sales</p>
+                              <a href="{{ route('app.sales.return') }}" class="nav-link">
+                                  <i class="fa fa-ban nav-icon"></i>
+                                  <p>Return Sale</p>
                               </a>
                           </li>
+                           <li class="nav-item">
+                            <a href="{{ route('app.sales.index') }}" class="nav-link">
+                                <i class="fa fa-table nav-icon"></i>
+                                <p>Manage Sales</p>
+                            </a>
+                        </li>
+
                       </ul>
                   </li>
                   @can('read-reports')

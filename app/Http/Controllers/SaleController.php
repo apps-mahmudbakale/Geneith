@@ -159,8 +159,21 @@ class SaleController extends Controller
             ->join('products', 'products.id', '=', 'sales.product_id')
             ->where('sales.invoice', $invoice)
             ->get();
+            $sum = DB::table('sales')
+            ->select(DB::raw('SUM(amount) as sum'))
+            ->where('invoice', $invoice)
+            ->first();
+            $user = DB::table('sales')
+            ->select('users.name')
+            ->join('users', 'users.id', '=', 'sales.user_id')
+            ->where('sales.invoice', $invoice)
+            ->first();
+        return view('sales.print', compact('items', 'invoice', 'sum', 'user'));
+    }
 
-        return view('sales.print', compact('items'));
+    public function returnView()
+    {
+        return view('sales.return');
     }
     /**
      * Store a newly created resource in storage.

@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Products</h1>
+                        <h1 class="m-0 text-dark">Return Sale</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.products.index') }}">Products</a></li>
-                            <li class="breadcrumb-item active">Update Product</li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.sales.index') }}">Sales</a></li>
+                            <li class="breadcrumb-item active">Return Sale</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -27,7 +27,7 @@
                 <!-- New User form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Update Product</h3>
+                        <h3 class="card-title">Return Sale</h3>
                     </div>
                     <!-- /.card-header -->
                     <form action="{{route('app.products.update', $product->id)}}" method="POST">
