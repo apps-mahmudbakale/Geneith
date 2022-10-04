@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->integer('amount');
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->boolean('synced')->default(false);
             $table->timestamps();
         });
     }

@@ -230,7 +230,7 @@
                                 @endforeach
                                 <tr>
                                     <td><strong style="font-size: 16px; color: #222222;">Total: </strong></td>
-                                    <td><strong style="font-size: 16px; color: #222222;">&#8358; <span
+                                    <td><strong style="font-size: 16px; color: #222222;">{!! app(App\Settings\StoreSettings::class)->currency !!}  <span
                                                 id="total">{{ number_format($getSum->total, 2) }}</span></strong>
                                     </td>
                                     <td><strong style="font-size: 16px; color: #222222;"><span id="text">

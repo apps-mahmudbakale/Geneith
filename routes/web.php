@@ -5,6 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\RequestsController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return redirect()->route('app.dashboard');
 });
+
 
 Auth::routes();
 
@@ -53,7 +55,9 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::post('endDayReport', [DashboardController::class, 'endOfDayReport'])->name('endofDay.report');
     Route::get('customReport', [DashboardController::class, 'customReportView'])->name('custom.report.view');
     Route::post('customReport', [DashboardController::class, 'customReport'])->name('custom.report');
+    Route::resource('invoices', InvoiceController::class);
     Route::resource('settings', SettingsController::class)->except('store','update', 'edit', 'show', 'destroy');
     Route::post('settings', [SettingsController::class, 'updateStoreSettings'])->name('update.store.settings');
+    Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
 });
 

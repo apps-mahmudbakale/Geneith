@@ -51,8 +51,8 @@
                                             <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$product->name}}</td>
-                                            <td>{{$product->buying_price}}</td>
-                                            <td>{{$product->selling_price}}</td>
+                                            <td>{!! app(App\Settings\StoreSettings::class)->currency !!} {{number_format($product->buying_price)}}</td>
+                                            <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($product->selling_price)}}</td>
                                             <td>{{$product->qty}}</td>
                                             <td>{{\Carbon\Carbon::parse($product->expiry_date)->diffForHumans()}}</td>
                                             <td>{{$product->store->name}}</td>

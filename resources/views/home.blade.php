@@ -26,18 +26,19 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+          @role('admin')
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>8</h3>
+                <h3>{{$users}}</h3>
 
                 <p>Users</p>
               </div>
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="users.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('app.users.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -45,54 +46,22 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>9</h3>
+                <h3>{{$products}}</h3>
 
-                <p>Items</p>
+                <p>Products</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="items.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('app.products.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>78</h3>
-
-                <p>Total Sales</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
-              </div>
-              <a href="sales.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>&#8358; 3456</h3>
-
-                <p>Total Sale in Cash</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-money-bill"></i>
-              </div>
-              <a href="sales.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3>&#8358; 8979</h3>
+                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  8979</h3>
 
                 <p>Total Items in Cash</p>
               </div>
@@ -102,6 +71,37 @@
               <a href="items.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+           <!-- ./col -->
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$sales}}</h3>
+
+                <p>Total Sales</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="{{route('app.sales.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sales_cash)}}</h3>
+
+                <p>Total Sale in Cash</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-money-bill"></i>
+              </div>
+              <a href="sales.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          @endrole
+          <!-- ./col -->
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">

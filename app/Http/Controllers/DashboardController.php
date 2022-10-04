@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use App\Models\User;
 use NumberFormatter;
 use App\Models\Product;
@@ -29,7 +30,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::count();
+        $products = Product::count();
+        $sales = Sale::count();
+        $sales_cash = Sale::sum('amount');
+        return view('home', compact('users', 'products','sales', 'sales_cash'));
     }
 
     public function generalReport()
@@ -63,13 +68,7 @@ class DashboardController extends Controller
             ->where('sales.station_id', $request->station)
             ->whereRaw('Date(sales.created_at) = CURDATE()')
             ->get();
-        $sum    = DB::table('sales')
-            ->selectRaw('sum(amount) as total')
-            ->whereRaw('Date(sales.created_at) = CURDATE()')
-            ->first();
-        $inWords = new NumberFormatter("En", NumberFormatter::SPELLOUT);
-        $words = $inWords->format($sum->total);
-        return view('reports.endDay', compact('sales', 'sum', 'words'));
+        return view('reports.endDay', compact('sales'));
     }
 
     public function customReportView()

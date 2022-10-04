@@ -17,12 +17,12 @@ class ProductsImport implements ToCollection,  WithHeadingRow
             foreach ($rows as $row) 
             {
                 $store = Store::where('name', $row['store'])->first();
-                Product::create([
-                    'store_id' => $store->id,
-                    'name' => $row['product'],
+                Product::updateOrCreate(
+                    ['store_id' => $store->id, 'name' => ucfirst($row['product'])],
+                    [
                     'buying_price' => $row['cost'],
                     'selling_price' => $row['cost'] * 1.6,
-                    'qty' => $row['quantity'],
+                    'qty' => DB::raw('qty + '.$row['quantity']),
                     'expiry_date' => $row['expiry'],
                 ]);
             }
@@ -30,15 +30,16 @@ class ProductsImport implements ToCollection,  WithHeadingRow
             // dd($rows);
             foreach ($rows as $row){
                 DB::table('station_products')
-                ->insert([
+                ->updateOrInsert([
                     'station_id' => auth()->user()->station->id,
                     'product_id' => $row['product'],
-                    'quantity' => $row['approved']
+                ],
+                ['quantity' => DB::raw('quantity +'.$row['approved'])
                 ]);
 
                $product = DB::table('products')
                 ->where('id', $row['product']);
-                $product->decrement('qty');
+                $product->decrement('qty', $row['approved']);
             }
            
         }

@@ -32,8 +32,8 @@
                 <h3 class="card-title p-3">Store Settings</h3>
                 <ul class="nav nav-pills ml-auto p-2">
                   <li class="nav-item"><a class="nav-link active" href="#general_settings" data-toggle="tab">General Settings</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">Tab 3</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Currency</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/backup">Backup</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -61,13 +61,22 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2">
-                    The European languages are members of the same family. Their separate existence is a myth.
-                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                    new common language would be desirable: one could refuse to pay expensive translators. To
-                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                    words. If several languages coalesce, the grammar of the resulting language is more simple
-                    and regular than that of the individual languages.
+                     <form action="{{route('app.update.store.currency')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        Store Default Currency
+                       <select name="store_currency" id="" class="form-control">
+                        <option selected value="{{$settings->currency}}">{!! $settings->currency !!}</option>
+                          @foreach ($currencies as $currency)
+                              <option value="{{$currency}}">{!! $currency !!}</option>
+                          @endforeach
+                       </select>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                   </form>
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">

@@ -45,7 +45,7 @@
                                             <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$product->name}}</td>
-                                            <td>{{$product->selling_price}}</td>
+                                            <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($product->selling_price)}}</td>
                                             <td>{{$product->quantity}}</td>
                                             <td>{{\Carbon\Carbon::parse($product->expiry_date)->diffForHumans()}}</td>
                                         </tr>

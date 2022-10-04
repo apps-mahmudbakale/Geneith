@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $this->authorize('read-users');
+        // $this->authorize('read-products');
 
         return view('products.index');
     }

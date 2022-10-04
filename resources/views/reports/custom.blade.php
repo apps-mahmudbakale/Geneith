@@ -113,7 +113,7 @@
                         <td>{{$sale->invoice}}</td>
                         <td>{{$sale->product}}</td>
                         <td>{{$sale->qty}}</td>
-                        <td>{{$sale->amount}}</td>
+                        <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sale->amount)}}</td>
                         <td>{{$sale->user}}</td>
                         <td>{{$sale->station}}</td>
                         <td>{{\Carbon\Carbon::parse($sale->created_at)->diffForHumans()}}</td>
@@ -139,7 +139,7 @@
                     <table class="table">
                         <tr>
                             <th>Total:</th>
-                            <td>&#8358; {{number_format($sum,2)}}</td>
+                            <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sum,2)}}</td>
                         </tr>
                         <tr>
                             <th>Amount In Words:</th>

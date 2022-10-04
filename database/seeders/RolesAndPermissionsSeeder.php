@@ -26,16 +26,21 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete',
         ];
         $roles = [
-            'admin',
-            'user',
+            'Admin',
+            'User',
         ];
         $entities = [
             'users',
             'roles',
-            'store',
-            'sales',
             'reports',
             'return',
+            'store',
+            'sales',
+            'stations',
+            'settings',
+            'invoices',
+            'products'
+           
            
         ];
 

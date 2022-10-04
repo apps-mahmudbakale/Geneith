@@ -9,6 +9,7 @@ class StoreSettings extends Settings {
     public string $store_name;
     public string $store_logo;
     public string $store_address;
+    public string $currency;
 
     public static function group(): string
     {

@@ -69,13 +69,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $sum = 0; ?>
                        @foreach($sales as $sale)
+                        <?php $sum += $sale->amount;?>
                         <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$sale->invoice}}</td>
                         <td>{{$sale->product}}</td>
                         <td>{{$sale->qty}}</td>
-                        <td>{{$sale->amount}}</td>
+                        <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sale->amount)}}</td>
                         <td>{{$sale->user}}</td>
                         <td>{{$sale->station}}</td>
                         <td>{{\Carbon\Carbon::parse($sale->created_at)->diffForHumans()}}</td>
@@ -101,11 +103,12 @@
                     <table class="table">
                         <tr>
                             <th>Total:</th>
-                            <td>&#8358; {{number_format($sum->total,2)}}</td>
+                            <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sum,2)}}</td>
                         </tr>
                         <tr>
                             <th>Amount In Words:</th>
-                            <td>{{ucfirst($words)}}</td>
+                            <?php $inWords = new NumberFormatter("En", NumberFormatter::SPELLOUT);?>
+                            <td>{{ucfirst($inWords->format($sum))}}</td>
                         </tr>
                     </table>
                 </div>

@@ -21,7 +21,7 @@ class RequestsExport implements FromCollection, WithHeadings
     {
         return [
             'Product',
-            'Aprroved Qty',
+            'Approved',
         ];
     }
 
