@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Invoice;
 use Livewire\Component;
 
 class ReturnSale extends Base
@@ -10,7 +11,7 @@ class ReturnSale extends Base
     public function render()
     {
         if ($this->search) {
-            $invoices = InvoiceModel::query()
+            $invoices = Invoice::query()
                 ->where('invoice', 'like', '%' . $this->search . '%')
                 ->paginate(10);
 
@@ -19,7 +20,7 @@ class ReturnSale extends Base
                 ['invoices' => $invoices]
             );
         } else {
-            $invoices = InvoiceModel::query()
+            $invoices = Invoice::query()
                 ->orderBy($this->sortBy, $this->sortDirection)
                 ->paginate($this->perPage);
             return view(

@@ -22,7 +22,7 @@
                           <p>Dashboard</p>
                       </a>
                   </li>
-
+                  @can('read-users')
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-lock"></i>
@@ -52,6 +52,8 @@
                           </li>
                       </ul>
                   </li>
+                  @endcan
+                  @can('read-products')
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-th"></i>
@@ -61,7 +63,7 @@
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
-                        @can('read-stores')
+                        @can('read-store')
                           <li class="nav-item">
                               <a href="{{ route('app.stores.index') }}" class="nav-link">
                                   <i class="fa fa-warehouse nav-icon"></i>
@@ -69,20 +71,25 @@
                               </a>
                           </li>
                           @endcan
+                          @can('read-products')
                           <li class="nav-item">
                               <a href="{{ route('app.products.index') }}" class="nav-link">
                                   <i class="fa fa-table nav-icon"></i>
                                   <p>Products</p>
                               </a>
                           </li>
+                          @endcan
+                          @can('read-request')
                           <li class="nav-item">
                               <a href="{{ route('app.requests.index') }}" class="nav-link">
                                   <i class="fa fa-random nav-icon"></i>
                                   <p>Requests</p>
                               </a>
                           </li>
+                          @endcan
                       </ul>
                   </li>
+                  @endcan
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-shopping-cart"></i>
@@ -100,12 +107,14 @@
                                   </a>
                               </li>
                           @endcan
+                          @can('read-return')
                           <li class="nav-item">
-                              <a href="{{ route('app.sales.return') }}" class="nav-link">
+                              <a href="{{ route('app.returns.index') }}" class="nav-link">
                                   <i class="fa fa-ban nav-icon"></i>
                                   <p>Return Sale</p>
                               </a>
                           </li>
+                          @endcan
                            <li class="nav-item">
                             <a href="{{ route('app.sales.index') }}" class="nav-link">
                                 <i class="fa fa-table nav-icon"></i>
@@ -146,20 +155,22 @@
                           </ul>
                       </li>
                   @endcan
+                  @can('read-invoice')
                   <li class="nav-item">
                       <a href="{{ route('app.invoices.index') }}" class="nav-link">
                           <i class="nav-icon fa fa-file-invoice"></i>
                           <p>Invoices</p>
                       </a>
                   </li>
-                  {{-- @can('read-settings') --}}
+                  @endcan
+                  @can('read-settings')
                       <li class="nav-item">
                           <a href="{{ route('app.settings.index') }}" class="nav-link">
                               <i class="nav-icon fa fa-cogs"></i>
                               <p>Settings</p>
                           </a>
                       </li>
-                  {{-- @endcan --}}
+                  @endcan
                   </ul>
               </nav>
               <!-- /.sidebar-menu -->

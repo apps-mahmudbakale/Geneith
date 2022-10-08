@@ -10,6 +10,7 @@ use App\Models\Station;
 use Illuminate\Http\Request;
 use App\Classes\CustomReport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -97,5 +98,26 @@ class DashboardController extends Controller
         $sum = $reports['sum'];
             return view('reports.custom', compact('products', 'stations', 'users', 'sales', 'words', 'sum'));
         
+    }
+    public function showChangePasswordGet() {
+        return view('change-password');
+    }
+    public function changePasswordPost(Request $request) {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+        #Match The Old Password
+        if(Hash::check($request->current_password, auth()->user()->password)){
+            // dd(Hash::make($request->new_password));
+            DB::table('users')
+                ->where('id', auth()->user()->id)
+                ->update([
+                    'password' => Hash::make($request->new_password)
+                ]);
+        return redirect()->back()->with("success","Password successfully changed!");
+        }else{
+             return back()->with("error", "Old Password Doesn't match!");
+        }      
     }
 }

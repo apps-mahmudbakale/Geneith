@@ -112,6 +112,12 @@
                         <td class="price" style="text-align: center;">{!! app(App\Settings\StoreSettings::class)->currency !!} {{ $item->amount }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td>Total:</td>
+                    <td></td>
+                    <td></td>
+                    <td>{!! app(App\Settings\StoreSettings::class)->currency !!} {{number_format($sum->sum)}}</td>
+                </tr>
             </tbody>
         </table>
         <br>

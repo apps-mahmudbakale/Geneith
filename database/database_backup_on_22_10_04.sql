@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `stores` (
 
 
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS  `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
@@ -54,11 +54,11 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-INSERT INTO users (`id`, `station_id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES 
-('1','1','Admin','admin@admin.com','08147384426','','$2y$10$5FTqtQAJBOi3CAcciUM.o.6RP2FQWHn6UqEDzO3OdRCK6RP02b7k.','','2022-10-04 00:08:15','2022-10-04 00:28:37');
+INSERT INTO users (`id`, `station_id`, `name`, `email`, `phone`,  `password`, `remember_token`, `created_at`, `updated_at`) VALUES 
+('1','1','Admin','admin@admin.com','08147384426','','$2y$10$5FTqtQAJBOi3CAcciUM.o.6RP2FQWHn6UqEDzO3OdRCK6RP02b7k.','2022-10-04 00:08:15','2022-10-04 00:28:37');
 
-INSERT INTO users (`id`, `station_id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES 
-('2','1','Mahmud Bakale','bakale.mahmud@cynox.com','08065480409','','$2y$10$l/zrmCrpzt3p9Bb1aMcu6.szUNFuKEEpKRcJBmiGurZD5Sz2nYCIu','','2022-10-04 01:51:44','2022-10-04 01:51:44');
+INSERT INTO users (`id`, `station_id`, `name`, `email`, `phone`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES 
+('2','1','Mahmud Bakale','bakale.mahmud@cynox.com','08065480409','$2y$10$l/zrmCrpzt3p9Bb1aMcu6.szUNFuKEEpKRcJBmiGurZD5Sz2nYCIu','','2022-10-04 01:51:44','2022-10-04 01:51:44');
 
 INSERT INTO products (`id`, `store_id`, `name`, `buying_price`, `selling_price`, `qty`, `expiry_date`, `created_at`, `updated_at`) VALUES 
 ('197','1','Amoxicilline/Clavulanic acid 1.2 mg(NOSCLAV)','841','1346','300','2022-10-04','2022-10-04 01:24:13','2022-10-04 01:34:54');

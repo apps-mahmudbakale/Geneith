@@ -13,12 +13,13 @@
               {{auth()->user()->name}}
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-              <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                <i class="nav-icon fa fa-power-off"></i> Logout
+   
+              <a href="{{route('app.changePasswordGet')}}" class="dropdown-item">
+                <i class="fas fa-lock"></i> Change Password
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-lock"></i> Change Password
+              <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                <i class="nav-icon fa fa-power-off"></i> Logout
               </a>
           </div>
 

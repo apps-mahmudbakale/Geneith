@@ -15,8 +15,25 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     @livewireStyles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\StoreSettings::class)->favicon) ? asset('storage/settings/'.app(App\Settings\StoreSettings::class)->favicon):asset('favicon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="{{ !empty(app(App\Settings\StoreSettings::class)->favicon) ? asset('storage/settings/' . app(App\Settings\StoreSettings::class)->favicon) : asset('favicon.png') }}">
+    <style>
+        .table tbody tr.success td {
+            background-color: #dff0d8;
+        }
 
+        .table tbody tr.error td {
+            background-color: #f2dede;
+        }
+
+        .table tbody tr.info td {
+            background-color: #d9edf7;
+        }
+
+        .table tbody tr.warning td {
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
@@ -43,7 +60,7 @@
                 showConfirmButton: true,
                 timer: 2500
             })
-            @elseif(session()->has('error'))
+        @elseif (session()->has('error'))
             Swal.fire({
                 position: 'center',
                 icon: 'error',

@@ -43,41 +43,8 @@
                                             <td>{{$invoice->invoice}}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{route('app.sales.print', $invoice->invoice)}}" class="btn btn-success btn-sm">
+                                                    <a href="{{route('app.returns.edit', $invoice->invoice)}}" class="btn btn-success btn-sm">
                                                         <i class="fa fa-eye"></i></a>
-                                                    <a href="{{route('app.invoices.edit', $invoice->id)}}" class="btn btn-info btn-sm">
-                                                        <i class="fa fa-edit"></i></a>
-                                                        <button class="btn btn-danger btn-sm" id="del{{ $invoice->id }}"
-                                                            data-value="{{ $invoice->id }}"><i class="fa fa-trash"></i></button>
-                                                        <script>
-                                                            document.querySelector('#del{{ $invoice->id }}').addEventListener('click', function(e) {
-                                                                // alert(this.getAttribute('data-value'));
-                                                                Swal.fire({
-                                                                    title: 'Are you sure?',
-                                                                    text: "You won't be able to revert this!",
-                                                                    icon: 'warning',
-                                                                    showCancelButton: true,
-                                                                    confirmButtonColor: '#3085d6',
-                                                                    cancelButtonColor: '#d33',
-                                                                    confirmButtonText: 'Yes, delete it!'
-                                                                }).then((result) => {
-                                                                    if (result.isConfirmed) {
-                                                                        document.getElementById('del#'+this.getAttribute('data-value')).submit();
-                                                                        // Swal.fire(
-                                                                        //     'Deleted!',
-                                                                        //     'Your file has been deleted.',
-                                                                        //     'success'
-                                                                        // )
-                                                                    }
-                                                                })
-                                                            })
-                                                        </script>
-                                                        <form id="del#{{ $invoice->id }}"
-                                                            action="{{ route('app.invoices.destroy', $invoice->id) }}" method="POST"
-                                                             style="display: inline-block;">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        </form>
                                                 </div>
                                             </td>
                                         </tr>

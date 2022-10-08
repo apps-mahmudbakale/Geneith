@@ -26,13 +26,14 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete',
         ];
         $roles = [
-            'Admin',
-            'User',
+            'admin',
+            'user',
         ];
         $entities = [
             'users',
             'roles',
             'reports',
+            'request',
             'return',
             'store',
             'sales',
@@ -57,7 +58,11 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $role = Role::findByName('admin');
         $role->givePermissionTo(Permission::all());
-        $userRole = User::find(1)->assignRole('admin');
+        $adminRole = User::find(1)->assignRole('admin');
+
+        $roleUser = Role::findByName('user');
+        $roleUser->givePermissionTo(Permission::all());
+        $userRole = User::find(2)->assignRole('user');
 
 }
 

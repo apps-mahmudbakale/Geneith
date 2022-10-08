@@ -130,7 +130,7 @@ class SaleController extends Controller
                 'product_id' => $order->product_id,
                 'qty' => $order->quantity,
                 'amount' => $order->amount,
-                'user_id' => 1
+                'user_id' => auth()->user()->id
             ]);
             $product = DB::table('station_products')
                 ->where('product_id',  $order->product_id)
@@ -171,9 +171,16 @@ class SaleController extends Controller
         return view('sales.print', compact('items', 'invoice', 'sum', 'user'));
     }
 
-    public function returnView()
+    public function returnShow($invoice)
     {
-        return view('sales.return');
+        
+        $items = DB::table('sales')
+        ->select('sales.*','products.name as product', 'products.selling_price')
+        ->join('products', 'products.id', '=', 'sales.product_id')
+        ->where('sales.invoice', $invoice)
+        ->get();
+        // dd($items);
+        return view('sales.return-show', compact('items'));
     }
     /**
      * Store a newly created resource in storage.
