@@ -68,7 +68,9 @@ class SaleController extends Controller
      */
     public function getSales($station)
     {
-        $sales = Sale::where('station_id', $station)->get();
+        $sales = Sale::where('station_id', $station)
+        ->where('synced', 0)
+        ->get();
 
         return response()->json($sales);
     }
@@ -81,7 +83,9 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $sales = Sale::create($request->all());
+
+        return response()->json('success');
     }
 
     /**
