@@ -29,7 +29,7 @@ use App\Http\Controllers\ReturnSaleController;
 Route::get('/', function () {
     return redirect()->route('app.dashboard');
 });
-Route::post('syncData', [SaleController::class, 'store']);
+Route::get('syncData/{data}', [SaleController::class, 'store']);
 // Route::get('db_dump', function () {
 //     /*
 //     Needed in SQL File:

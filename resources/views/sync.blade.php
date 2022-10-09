@@ -54,7 +54,7 @@
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
         let db = new Localbase('uduth_sync');
-        const SyncUrl = 'https://www.uduth.geneith-okma.com.ng/api/';
+        const SyncUrl = 'https://www.uduth.geneith-okma.com.ng/';
         const Url = 'http://localhost:8001/api/';
         let sync = document.getElementById('SyncBtn');
         window.addEventListener('load', function() {
@@ -97,22 +97,26 @@
                         partialObjects.forEach(sale => {
                             Loading.show('Syncing Sales Data...');
                             console.log(sale);
-                            fetch('/syncData', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json; charset=UTF-8'
-                                    },
-                                    body: JSON.stringify({
-                                        _token: '{{csrf_token()}}',
-                                        invoice: sale.invoice,
-                                        product_id: sale.product_id,
-                                        user_id: sale.user_id,
-                                        amount: sale.amount,
-                                        qty:sale.qty,
-                                        station_id: sale.station_id,
-                                        created_at: sale.created_at
-                                    })
-                                })
+                            fetch('https://www.uduth.geneith-okma.com.ng/syncData?' + new URLSearchParams({
+                                    foo: 'value',
+                                    bar: 2,
+                                }))
+                                // fetch(SyncUrl + 'syncData', {
+                                //         method: 'POST',
+                                //         headers: {
+                                //             'Content-Type': 'application/json; charset=UTF-8'
+                                //         },
+                                //         body: JSON.stringify({
+                                //             _token: '{{ csrf_token() }}',
+                                //             invoice: sale.invoice,
+                                //             product_id: sale.product_id,
+                                //             user_id: sale.user_id,
+                                //             amount: sale.amount,
+                                //             qty:sale.qty,
+                                //             station_id: sale.station_id,
+                                //             created_at: sale.created_at
+                                //         })
+                                //     })
                                 .then((res) => res.json())
                                 .then((data) => {
                                     console.log(data);
