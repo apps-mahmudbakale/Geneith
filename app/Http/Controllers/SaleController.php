@@ -189,15 +189,15 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
-        dd($request->all());
-        // if($sales = Sale::create($request->all())){
-        //     return response()->json([
-        //         'success' => true,
-        //         'message' => 'Beneficiary successfully created.',
-        //     ]);
-        // }
+        // dd($request->all());
+        if($sales = Sale::create($request->all())){
+            return response()->json([
+                'success' => true,
+                'message' => 'Beneficiary successfully created.',
+            ]);
+        }
         // $sales = Sale::create([
         //     'invoice' => $request->invoice,
         //     'product_id' => $request->product_id,
