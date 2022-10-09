@@ -15,10 +15,6 @@ use App\Http\Controllers\Api\SaleController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('getPrice', [SaleController::class, 'getPrice']);
 Route::get('getSales/{station}', [SaleController::class, 'getSales']);
 Route::post('sales', [SaleController::class, 'store']);
