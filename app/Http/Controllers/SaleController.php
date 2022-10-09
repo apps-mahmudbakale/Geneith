@@ -199,7 +199,7 @@ class SaleController extends Controller
                 'amount'  => $request->amount,
                 'qty' => $request->qty,
                 'station_id' => $request->station_id,
-                'created_at' => date($request->created_at, 'Y-m-d H:i:s'),
+                'created_at' => now(),
             ]);
         // if($sales = Sale::create($request->all())){
         //     return response()->json([
