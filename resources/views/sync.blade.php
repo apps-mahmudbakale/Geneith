@@ -103,6 +103,7 @@
                                         'Content-Type': 'application/json; charset=UTF-8'
                                     },
                                     body: JSON.stringify({
+                                        _token: '{{csrf_token()}}',
                                         invoice: sale.invoice,
                                         product_id: sale.product_id,
                                         user_id: sale.user_id,
