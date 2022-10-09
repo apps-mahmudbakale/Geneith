@@ -54,7 +54,7 @@
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
         let db = new Localbase('uduth_sync');
-        // const Url = 'https://sctusokotora1.org.ng/api/';
+        const SyncUrl = 'https://www.uduth.geneith-okma.com.ng/api/';
         const Url = 'http://localhost:8001/api/';
         let sync = document.getElementById('SyncBtn');
         window.addEventListener('load', function() {
@@ -97,7 +97,7 @@
                         partialObjects.forEach(sale => {
                             Loading.show('Syncing Sales Data...');
                             console.log(sale);
-                            fetch(Url + 'sales', {
+                            fetch(SyncUrl + 'sales', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json; charset=UTF-8'
