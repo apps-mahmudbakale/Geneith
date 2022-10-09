@@ -192,21 +192,25 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        if($sales = Sale::create($request->all())){
-            return response()->json([
-                'success' => true,
-                'message' => 'Beneficiary successfully created.',
-            ]);
-        }
-        // $sales = Sale::create([
-        //     'invoice' => $request->invoice,
-        //     'product_id' => $request->product_id,
-        //     'user_id' => $request->user_id,
-        //     'amount'  => $request->amount,
-        //     'qty' => $request->qty,
-        //     'station_id' => $request->station_id,
-        //     'created_at' => $request->created_at,
-        // ]);
+        // if($sales = Sale::create($request->all())){
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Beneficiary successfully created.',
+        //     ]);
+        // }
+        $sales = Sale::create([
+            'invoice' => $request->invoice,
+            'product_id' => $request->product_id,
+            'user_id' => $request->user_id,
+            'amount'  => $request->amount,
+            'qty' => $request->qty,
+            'station_id' => $request->station_id,
+            'created_at' => $request->created_at,
+        ]);
+        return response()->json([
+                    'success' => true,
+                    'message' => 'Beneficiary successfully created.',
+                ]);
 
         
 
