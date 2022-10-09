@@ -97,7 +97,7 @@
                         partialObjects.forEach(sale => {
                             Loading.show('Syncing Sales Data...');
                             console.log(sale);
-                            fetch(SyncUrl + 'sales', {
+                            fetch('/syncData', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json; charset=UTF-8'
