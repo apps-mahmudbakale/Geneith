@@ -107,6 +107,7 @@
                                         product_id: sale.product_id,
                                         user_id: sale.user_id,
                                         amount: sale.amount,
+                                        qty:sale.qty,
                                         station_id: sale.station_id,
                                         created_at: sale.created_at
                                     })
