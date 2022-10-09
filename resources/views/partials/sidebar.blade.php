@@ -23,72 +23,72 @@
                       </a>
                   </li>
                   @can('read-users')
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-lock"></i>
-                          <p>
-                              Authentication
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('app.users.index') }}" class="nav-link">
-                                  <i class="fa fa-users nav-icon"></i>
-                                  <p>Users</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('app.roles.index') }}" class="nav-link">
-                                  <i class="fa fa-universal-access nav-icon"></i>
-                                  <p>Roles</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('app.stations.index') }}" class="nav-link">
-                                  <i class="fa fa-building nav-icon"></i>
-                                  <p>Stations</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-lock"></i>
+                              <p>
+                                  Authentication
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="{{ route('app.users.index') }}" class="nav-link">
+                                      <i class="fa fa-users nav-icon"></i>
+                                      <p>Users</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="{{ route('app.roles.index') }}" class="nav-link">
+                                      <i class="fa fa-universal-access nav-icon"></i>
+                                      <p>Roles</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="{{ route('app.stations.index') }}" class="nav-link">
+                                      <i class="fa fa-building nav-icon"></i>
+                                      <p>Stations</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
                   @endcan
                   @can('read-products')
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-th"></i>
-                          <p>
-                              Products
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                        @can('read-store')
-                          <li class="nav-item">
-                              <a href="{{ route('app.stores.index') }}" class="nav-link">
-                                  <i class="fa fa-warehouse nav-icon"></i>
-                                  <p>Stores</p>
-                              </a>
-                          </li>
-                          @endcan
-                          @can('read-products')
-                          <li class="nav-item">
-                              <a href="{{ route('app.products.index') }}" class="nav-link">
-                                  <i class="fa fa-table nav-icon"></i>
-                                  <p>Products</p>
-                              </a>
-                          </li>
-                          @endcan
-                          @can('read-request')
-                          <li class="nav-item">
-                              <a href="{{ route('app.requests.index') }}" class="nav-link">
-                                  <i class="fa fa-random nav-icon"></i>
-                                  <p>Requests</p>
-                              </a>
-                          </li>
-                          @endcan
-                      </ul>
-                  </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-th"></i>
+                              <p>
+                                  Products
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              @can('read-store')
+                                  <li class="nav-item">
+                                      <a href="{{ route('app.stores.index') }}" class="nav-link">
+                                          <i class="fa fa-warehouse nav-icon"></i>
+                                          <p>Stores</p>
+                                      </a>
+                                  </li>
+                              @endcan
+                              @can('read-products')
+                                  <li class="nav-item">
+                                      <a href="{{ route('app.products.index') }}" class="nav-link">
+                                          <i class="fa fa-table nav-icon"></i>
+                                          <p>Products</p>
+                                      </a>
+                                  </li>
+                              @endcan
+                              @can('read-request')
+                                  <li class="nav-item">
+                                      <a href="{{ route('app.requests.index') }}" class="nav-link">
+                                          <i class="fa fa-random nav-icon"></i>
+                                          <p>Requests</p>
+                                      </a>
+                                  </li>
+                              @endcan
+                          </ul>
+                      </li>
                   @endcan
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
@@ -108,19 +108,19 @@
                               </li>
                           @endcan
                           @can('read-return')
+                              <li class="nav-item">
+                                  <a href="{{ route('app.returns.index') }}" class="nav-link">
+                                      <i class="fa fa-ban nav-icon"></i>
+                                      <p>Return Sale</p>
+                                  </a>
+                              </li>
+                          @endcan
                           <li class="nav-item">
-                              <a href="{{ route('app.returns.index') }}" class="nav-link">
-                                  <i class="fa fa-ban nav-icon"></i>
-                                  <p>Return Sale</p>
+                              <a href="{{ route('app.sales.index') }}" class="nav-link">
+                                  <i class="fa fa-table nav-icon"></i>
+                                  <p>Manage Sales</p>
                               </a>
                           </li>
-                          @endcan
-                           <li class="nav-item">
-                            <a href="{{ route('app.sales.index') }}" class="nav-link">
-                                <i class="fa fa-table nav-icon"></i>
-                                <p>Manage Sales</p>
-                            </a>
-                        </li>
 
                       </ul>
                   </li>
@@ -156,12 +156,12 @@
                       </li>
                   @endcan
                   @can('read-invoice')
-                  <li class="nav-item">
-                      <a href="{{ route('app.invoices.index') }}" class="nav-link">
-                          <i class="nav-icon fa fa-file-invoice"></i>
-                          <p>Invoices</p>
-                      </a>
-                  </li>
+                      <li class="nav-item">
+                          <a href="{{ route('app.invoices.index') }}" class="nav-link">
+                              <i class="nav-icon fa fa-file-invoice"></i>
+                              <p>Invoices</p>
+                          </a>
+                      </li>
                   @endcan
                   @can('read-settings')
                       <li class="nav-item">
@@ -171,9 +171,17 @@
                           </a>
                       </li>
                   @endcan
-                  </ul>
-              </nav>
-              <!-- /.sidebar-menu -->
-          </div>
-          <!-- /.sidebar -->
-      </aside>
+                  {{-- @can('read-settings') --}}
+                  <li class="nav-item">
+                      <a href="{{ route('app.sync') }}" class="nav-link">
+                          <i class="nav-icon fa fa-sync"></i>
+                          <p>Sync</p>
+                      </a>
+                  </li>
+                  {{-- @endcan --}}
+              </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+  </aside>

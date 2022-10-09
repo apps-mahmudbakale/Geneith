@@ -99,6 +99,7 @@ Auth::routes();
 /* Route Dashboards */
 Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('sync', [DashboardController::class, 'sync'])->name('sync');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('stations', StationController::class);

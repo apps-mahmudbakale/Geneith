@@ -120,4 +120,8 @@ class DashboardController extends Controller
              return back()->with("error", "Old Password Doesn't match!");
         }      
     }
+
+    public function sync(){
+        return view('sync');
+    }
 }

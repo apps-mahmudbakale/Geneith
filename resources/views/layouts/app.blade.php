@@ -15,6 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     @livewireStyles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/loader.css')}}">
     <link rel="shortcut icon" type="image/x-icon"
         href="{{ !empty(app(App\Settings\StoreSettings::class)->favicon) ? asset('storage/settings/' . app(App\Settings\StoreSettings::class)->favicon) : asset('favicon.png') }}">
     <style>
@@ -48,6 +49,7 @@
     </div>
     @livewireScripts
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    <script src="{{asset('js/localbase.dev.js')}}"></script>
     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>

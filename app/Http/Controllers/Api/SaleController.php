@@ -66,9 +66,11 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getSales($station)
     {
-        //
+        $sales = Sale::where('station_id', $station)->get();
+
+        return response()->json($sales);
     }
 
     /**
@@ -79,7 +81,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

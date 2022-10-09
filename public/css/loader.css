@@ -1,0 +1,166 @@
+/* * {
+  box-sizing: border-box;
+} */
+
+html {
+  font: 16px/1.5 "Ubuntu", sans-serif;
+}
+
+/* body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 1rem 0 3rem;
+  color: #333;
+} */
+
+/* .container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: #999;
+}
+
+button {
+  padding: 0.25em 0.75em;
+  font: inherit;
+} */
+
+/* hr {
+  margin: 2em 0;
+  border: solid #e0e0e0;
+  border-width: 1px 0 0;
+}
+
+pre {
+  font-family: "Ubuntu Mono";
+  background-color: #f6f6f6;
+  color: #666;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+} */
+
+@-webkit-keyframes loader-fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes loader-fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes loader-fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loader-fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes loader-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader, [data-loading]:after {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #c6dff9;
+  border-top-color: #0080ff;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  -webkit-animation: loader-fadeIn 0.2s linear, loader-rotate 0.7s infinite linear;
+          animation: loader-fadeIn 0.2s linear, loader-rotate 0.7s infinite linear;
+}
+
+[data-loading]:before {
+  content: attr(data-loading-message);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 128px;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  color: #444;
+  background: rgba(255, 255, 255, 0.75);
+  will-change: opacity;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+}
+[data-loading]:after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  margin-left: -28px;
+  border: 5px solid #c6dff9;
+  border-top-color: #0080ff;
+}
+
+[data-loading=true]:before {
+  pointer-events: auto;
+  -webkit-animation-name: loader-fadeIn;
+          animation-name: loader-fadeIn;
+}
+
+[data-loading=false]:before {
+  pointer-events: none;
+  -webkit-animation-name: loader-fadeOut;
+          animation-name: loader-fadeOut;
+}
+
+[data-loading=false]:after {
+  content: initial;
+}
