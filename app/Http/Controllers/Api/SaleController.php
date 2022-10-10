@@ -121,10 +121,18 @@ class SaleController extends Controller
 
     public function syncProducts(Request $request)
     {
-        dd($request->all());
-        // $products = DB::table('station_products')
-        //                 ->where('station_id', $request->station_id)
-        //                 ->get();
+        // dd($request->all());
+        $products = DB::table('station_products')
+                        ->updateOrInsert(
+                            ['station_id' => $request->station_id, 'product_id' => $request->product_id],
+                            ['quantity' => $request->quantity]
+                        );
+        if($products){
+            return response()->json([
+                'success' => true,
+                'message' => 'Activity successfully created.',
+            ]);
+        }
         // return response()->json($products);
     }
     /**

@@ -208,7 +208,7 @@ class SaleController extends Controller
                 ->update(['synced' => true]);
             return response()->json([
                 'success' => true,
-                'message' => 'Beneficiary successfully created.',
+                'message' => 'Activity successfully created.',
             ]);
         }
     }

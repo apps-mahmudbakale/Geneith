@@ -122,7 +122,7 @@
                                                 data.forEach(element => {
                                                     $.ajax({
                                                     type: "POST",
-                                                    url: SyncUrl + "/api/syncProducts",
+                                                    url: SyncUrl + "api/syncProducts",
                                                     data: {
                                                         station_id: element.station_id,
                                                         quantity: element.quantity,
