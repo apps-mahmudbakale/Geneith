@@ -40,7 +40,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'stations',
             'settings',
             'invoices',
-            'products'
+            'products',
+            'sync'
            
            
         ];

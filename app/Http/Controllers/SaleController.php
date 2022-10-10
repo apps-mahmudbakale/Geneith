@@ -21,20 +21,9 @@ class SaleController extends Controller
 
     public function createRandomPassword()
     {
-        $chars = "003232303232023232023456789";
-        srand((float)microtime() * 1000000);
-        $i = 0;
-        $pass = '';
-        while ($i <= 7) {
-
-            $num = rand() % 33;
-
-            $tmp = substr($chars, $num, 1);
-
-            $pass = $pass . $tmp;
-
-            $i++;
-        }
+        $station = auth()->user()->station->name;
+        $sum = DB::table('sales')->where('station_id', auth()->user()->station->id)->count() + 1;
+        $pass = substr($station, 0,3)."".date('d')."".date('m')."".date('Y')."-".sprintf('%04d', $sum);
         return $pass;
     }
 
@@ -46,7 +35,7 @@ class SaleController extends Controller
     public function create()
     {
         if (empty(session('invoice'))) {
-            session()->put('invoice', 'RS-' . $this->createRandomPassword());
+            session()->put('invoice', $this->createRandomPassword());
         }
         $invoice = session()->get('invoice');
         return view('sales.create', compact('invoice'));

@@ -97,14 +97,14 @@
                         partialObjects.forEach(sale => {
                             Loading.show('Syncing Sales Data...');
                             console.log(sale);
-                            fetch(SyncUrl+'syncData?' + new URLSearchParams({
-                                invoice: sale.invoice,
-                                product_id: sale.product_id,
-                                user_id: sale.user_id,
-                                amount: sale.amount,
-                                qty:sale.qty,
-                                station_id: sale.station_id,
-                                created_at: sale.created_at
+                            fetch(SyncUrl + 'syncData?' + new URLSearchParams({
+                                    invoice: sale.invoice,
+                                    product_id: sale.product_id,
+                                    user_id: sale.user_id,
+                                    amount: sale.amount,
+                                    qty: sale.qty,
+                                    station_id: sale.station_id,
+                                    created_at: sale.created_at
                                 }))
                                 .then((res) => res.json())
                                 .then((data) => {
@@ -114,31 +114,40 @@
                                             type: "POST",
                                             url: "/api/stationProducts",
                                             data: {
-                                                station_id: '{{auth()->user()->station->id}}'
+                                                station_id: '{{ auth()->user()->station->id }}'
                                             },
                                             cache: false,
                                             success: function(data) {
                                                 console.log(data)
                                                 data.forEach(element => {
                                                     $.ajax({
-                                                    type: "POST",
-                                                    url: SyncUrl + "api/syncProducts",
-                                                    data: {
-                                                        station_id: element.station_id,
-                                                        quantity: element.quantity,
-                                                        product_id: element.product_id
-                                                    },
-                                                    cache: false,
-                                                    success: function(html) {
-                                                        console.log(html)
+                                                        type: "POST",
+                                                        url: SyncUrl +
+                                                            "api/syncProducts",
+                                                        data: {
+                                                            station_id: element
+                                                                .station_id,
+                                                            quantity: element
+                                                                .quantity,
+                                                            product_id: element
+                                                                .product_id
+                                                        },
+                                                        cache: false,
+                                                        success: function(
+                                                            html
+                                                            ) {
+                                                            console
+                                                                .log(
+                                                                    html
+                                                                    )
 
-                                                    }
-                                                       
-                                                });
+                                                        }
+
+                                                    });
                                                 })
 
                                             }
-                                                });
+                                        });
                                         db.collection('sales_temp').doc({
                                             invoice: sale.invoice
                                         }).delete();
@@ -146,7 +155,13 @@
                                         if (index == sales.length) {
                                             Loading.hide();
                                             setTimeout(() => {
-
+                                                Swal.fire({
+                                                    position: 'center',
+                                                    icon: 'success',
+                                                    title: 'Sync Successfull',
+                                                    showConfirmButton: true,
+                                                    timer: 5500
+                                                })
                                             }, 5000);
                                         }
                                     }
@@ -156,9 +171,13 @@
 
                         });
                     } else {
-                        alertify.alert('Notification', 'No Beneficiaries to Sync!', function() {
-                            window.location.reload()
-                        });
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'No Data to Sync',
+                            showConfirmButton: true,
+                            timer: 5500
+                        })
                     }
                 });
             } else {
