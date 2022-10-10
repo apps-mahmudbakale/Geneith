@@ -30,6 +30,7 @@ Route::get('/', function () {
     return redirect()->route('app.dashboard');
 });
 Route::get('syncData', [SaleController::class, 'store']);
+Route::post('synced', [SaleController::class, 'synced']);
 // Route::get('db_dump', function () {
 //     /*
 //     Needed in SQL File:

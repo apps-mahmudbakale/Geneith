@@ -110,6 +110,20 @@
                                 .then((data) => {
                                     console.log(data);
                                     if (data.success == true) {
+                                        var csrf = document.querySelector('meta[name="csrf-token"]').content;
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/synced",
+                                            data: {
+                                                _token: csrf,
+                                                invoice: sale.invoice,
+                                                product_id: sale.product_id
+                                            },
+                                            cache: false,
+                                            success: function(html) {
+                                                console.log(html)
+                                            }
+                                        });
                                         $.ajax({
                                             type: "POST",
                                             url: "/api/stationProducts",
@@ -135,11 +149,11 @@
                                                         cache: false,
                                                         success: function(
                                                             html
-                                                            ) {
+                                                        ) {
                                                             console
                                                                 .log(
                                                                     html
-                                                                    )
+                                                                )
 
                                                         }
 

@@ -191,10 +191,6 @@ class SaleController extends Controller
                 'created_at' => now(),
             ]);
         if($sales){
-            DB::table('sales')
-                ->where('invoice', $request->invoice)
-                ->where('product_id', $request->product_id)
-                ->update(['synced' => true]);
             return response()->json([
                 'success' => true,
                 'message' => 'Activity successfully created.',
@@ -203,7 +199,12 @@ class SaleController extends Controller
     }
 
 
-
+    public function synced(Request $request){
+        DB::table('sales')
+        ->where('invoice', $request->invoice)
+        ->where('product_id', $request->product_id)
+        ->update(['synced' => true]);
+    }
     /**
      * Display the specified resource.
      *
