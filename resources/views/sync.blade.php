@@ -110,18 +110,33 @@
                                 .then((data) => {
                                     console.log(data);
                                     if (data.success == true) {
-                                        // $.ajax({
-                                        //             type: "POST",
-                                        //             url: "/api/updateSale",
-                                        //             data: {
-                                        //                 product_id: sale.product_id,
-                                        //                 invoice: sale.invoice
-                                        //             },
-                                        //             cache: false,
-                                        //             success: function(html) {
-                                        //                 console.log(html)
-                                        //             }
-                                        //         });
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/api/stationProducts",
+                                            data: {
+                                                station_id: '{{auth()->user()->station->id}}'
+                                            },
+                                            cache: false,
+                                            success: function(data) {
+                                                console.log(data)
+                                                data.forEach(element => {
+                                                    $.ajax({
+                                                    type: "POST",
+                                                    url: SyncUrl + "/api/syncProducts",
+                                                    data: {
+                                                        station_id: element.station_id,
+                                                        quantity: element.quantity,
+                                                        product_id: element.product_id
+                                                    },
+                                                    cache: false,
+                                                    success: function(html) {
+                                                        console.log(html)
+                                                       
+                                                });
+                                                })
+
+                                            }
+                                                });
                                         db.collection('sales_temp').doc({
                                             invoice: sale.invoice
                                         }).delete();

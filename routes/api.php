@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('getPrice', [SaleController::class, 'getPrice']);
 Route::get('getSales/{station}', [SaleController::class, 'getSales']);
 Route::post('updateSale', [SaleController::class, 'update']);
+Route::post('stationProducts', [SaleController::class, 'stationProducts']);
