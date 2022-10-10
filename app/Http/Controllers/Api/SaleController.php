@@ -111,7 +111,6 @@ class SaleController extends Controller
 
     public function stationProducts(Request $request)
     {
-        // dd($request->all());
 
         $products = DB::table('station_products')
                         ->where('station_id', $request->station_id)
@@ -119,6 +118,15 @@ class SaleController extends Controller
         return response()->json($products);
     }
 
+
+    public function syncProducts(Request $request)
+    {
+        dd($request->all());
+        // $products = DB::table('station_products')
+        //                 ->where('station_id', $request->station_id)
+        //                 ->get();
+        // return response()->json($products);
+    }
     /**
      * Update the specified resource in storage.
      *
