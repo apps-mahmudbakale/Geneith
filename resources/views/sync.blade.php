@@ -55,6 +55,7 @@
     <script>
         let db = new Localbase('uduth_sync');
         const SyncUrl = 'https://www.uduth.geneith-okma.com.ng/';
+        // const SyncUrl = 'http://localhost:8001/';
         const Url = 'http://localhost:8001/api/';
         let sync = document.getElementById('SyncBtn');
         window.addEventListener('load', function() {
@@ -63,7 +64,6 @@
             fetch(Url + 'getSales/' + {{ auth()->user()->station->id }})
                 .then((res) => res.json())
                 .then((data) => {
-
                     console.log(data);
                     data.forEach(element => {
                         Loading.show('Initializing Sync...');
@@ -106,26 +106,22 @@
                                 station_id: sale.station_id,
                                 created_at: sale.created_at
                                 }))
-                                // fetch(SyncUrl + 'syncData', {
-                                //         method: 'POST',
-                                //         headers: {
-                                //             'Content-Type': 'application/json; charset=UTF-8'
-                                //         },
-                                //         body: JSON.stringify({
-                                //             _token: '{{ csrf_token() }}',
-                                //             invoice: sale.invoice,
-                                //             product_id: sale.product_id,
-                                //             user_id: sale.user_id,
-                                //             amount: sale.amount,
-                                //             qty:sale.qty,
-                                //             station_id: sale.station_id,
-                                //             created_at: sale.created_at
-                                //         })
-                                //     })
                                 .then((res) => res.json())
                                 .then((data) => {
                                     console.log(data);
                                     if (data.success == true) {
+                                        // $.ajax({
+                                        //             type: "POST",
+                                        //             url: "/api/updateSale",
+                                        //             data: {
+                                        //                 product_id: sale.product_id,
+                                        //                 invoice: sale.invoice
+                                        //             },
+                                        //             cache: false,
+                                        //             success: function(html) {
+                                        //                 console.log(html)
+                                        //             }
+                                        //         });
                                         db.collection('sales_temp').doc({
                                             invoice: sale.invoice
                                         }).delete();

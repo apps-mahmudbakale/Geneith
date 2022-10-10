@@ -17,4 +17,6 @@ class Requests extends Model
         'approved_qty',
         'request_ref'
     ];
+
 }
+

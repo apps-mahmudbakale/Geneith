@@ -191,8 +191,8 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-            DB::table('sales')->insert([
+        
+           $sales = DB::table('sales')->insert([
                 'invoice' => $request->invoice,
                 'product_id' => $request->product_id,
                 'user_id' => $request->user_id,
@@ -201,28 +201,16 @@ class SaleController extends Controller
                 'station_id' => $request->station_id,
                 'created_at' => now(),
             ]);
-        // if($sales = Sale::create($request->all())){
-        //     return response()->json([
-        //         'success' => true,
-        //         'message' => 'Beneficiary successfully created.',
-        //     ]);
-        // }
-        // $sales = Sale::create([
-        //     'invoice' => $request->invoice,
-        //     'product_id' => $request->product_id,
-        //     'user_id' => $request->user_id,
-        //     'amount'  => $request->amount,
-        //     'qty' => $request->qty,
-        //     'station_id' => $request->station_id,
-        //     'created_at' => $request->created_at,
-        // ]);
-        // return response()->json([
-        //             'success' => true,
-        //             'message' => 'Beneficiary successfully created.',
-        //         ]);
-
-        
-
+        if($sales){
+            DB::table('sales')
+                ->where('invoice', $request->invoice)
+                ->where('product_id', $request->product_id)
+                ->update(['synced' => true]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Beneficiary successfully created.',
+            ]);
+        }
     }
 
 
