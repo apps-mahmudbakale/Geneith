@@ -171,14 +171,14 @@
                           </a>
                       </li>
                   @endcan
-                  {{-- @can('read-settings') --}}
+                  @can('read-sync')
                   <li class="nav-item">
                       <a href="{{ route('app.sync') }}" class="nav-link">
                           <i class="nav-icon fa fa-sync"></i>
                           <p>Sync</p>
                       </a>
                   </li>
-                  {{-- @endcan --}}
+                  @endcan
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

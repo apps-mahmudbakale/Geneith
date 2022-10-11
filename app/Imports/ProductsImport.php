@@ -21,7 +21,7 @@ class ProductsImport implements ToCollection,  WithHeadingRow
                     ['store_id' => $store->id, 'name' => ucfirst($row['product'])],
                     [
                     'buying_price' => $row['cost'],
-                    'selling_price' => $row['cost'] * 1.6,
+                    'selling_price' => $row['cost'] * 1.5,
                     'qty' => DB::raw('qty + '.$row['quantity']),
                     'expiry_date' => $row['expiry'],
                 ]);

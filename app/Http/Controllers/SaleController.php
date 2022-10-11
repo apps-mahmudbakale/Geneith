@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +24,8 @@ class SaleController extends Controller
     {
         $station = auth()->user()->station->name;
         $sum = DB::table('sales')->where('station_id', auth()->user()->station->id)->count() + 1;
-        $pass = substr($station, 0,3)."".date('d')."".date('m')."".date('Y')."-".sprintf('%04d', $sum);
-        return $pass;
+        $pass = substr($station, 0,3)."".date('d')."".date('m')."".date('y')."-".sprintf('%04d', $sum);
+        return strtoupper($pass);
     }
 
     /**
@@ -178,6 +179,26 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function syncStore(Request $request)
+    {
+        $products = Product::updateOrCreate(
+            ['name' => $request->name, 'store_id' => $request->store_id],
+            [
+                'buying_price' => $request->buying_price, 
+                'selling_price' => $request->selling_price,
+                'qty' => $request->qty,
+                'expiry_date' => $request->expiry_date
+            ]);
+          
+        if($products){
+            return response()->json([
+                'success' => true,
+                'message' => 'Activity successfully created.',
+            ]);
+        }
+    }
+
+
     public function store(Request $request)
     {
         
@@ -247,6 +268,8 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+
+        return back()->with('Sale Deleted');
     }
 }

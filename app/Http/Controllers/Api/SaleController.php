@@ -6,6 +6,7 @@ use App\Models\Sale;
 use NumberFormatter;
 use App\Models\Invoice;
 use App\Models\Product;
+use App\Models\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -75,6 +76,14 @@ class SaleController extends Controller
         return response()->json($sales);
     }
 
+
+    public function getProducts()
+    {
+        $products = Product::get();
+
+        return response()->json($products);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -116,6 +125,12 @@ class SaleController extends Controller
                         ->where('station_id', $request->station_id)
                         ->get();
         return response()->json($products);
+    }
+
+    public function requests()
+    {
+        $requests = Requests::get();
+        return response()->json($requests);
     }
 
 
