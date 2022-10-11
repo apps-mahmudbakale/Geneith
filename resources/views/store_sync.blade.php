@@ -55,8 +55,8 @@
     <script>
         let db = new Localbase('uduth_sync');
         const SyncUrl = 'https://www.uduth.geneith-okma.com.ng/';
-        const Url = 'http://localhost:8001/api/';
-        // const Url = 'http://geneith.test/api/';
+        // const Url = 'http://localhost:8001/api/';
+        const Url = 'http://geneith.test/api/';
         let sync = document.getElementById('SyncBtn');
         window.addEventListener('load', function() {
             // alert('hello');

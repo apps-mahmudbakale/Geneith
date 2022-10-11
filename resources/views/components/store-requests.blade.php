@@ -34,7 +34,7 @@
                                         <th>S/N</th>
                                         <th>Request Reference</th>
                                         <th>Station</th>
-                                        <th>Requested By</th>
+                                        {{-- <th>Requested By</th> --}}
                                         <th>Date</th>
                                         <th>Status</th>
                                         <th></th>
@@ -47,7 +47,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$request->request_ref}}</td>
                                         <td>{{$request->name}}</td>
-                                        <td>{{$request->user}}</td>
+                                        {{-- <td>{{$request->user}}</td> --}}
                                         <td>{{\Carbon\Carbon::parse($request->date)->diffForHumans()}}</td>
                                         <td><label class="badge {{$request->status == 'pending' ? 'badge-secondary' : 'badge-success'}}">{{$request->status}}</label></td>
                                         <td>
