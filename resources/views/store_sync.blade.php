@@ -89,6 +89,36 @@
         sync.addEventListener('click', function() {
             if (navigator.onLine) {
                 Loading.show('Getting Ready  for Sync...');
+                $.ajax({
+                    url: "/api/requests",
+                    type: 'GET',
+                    dataType: 'json', // added data type
+                    success: function(res) {
+                        console.log(res);
+                        // alert(res);
+                        res.forEach(req => {
+                            $.ajax({
+                                type: "POST",
+                                url: SyncUrl +
+                                    "api/syncRequest",
+                                data: {
+                                    station_id: req.station_id,
+                                    user_id: req.user_id,
+                                    request_qty: req.request_qty,
+                                    approved_qty: req.approved_qty,
+                                    product_id: req.product_id,
+                                    request_ref: req.request_ref,
+                                    status: req.status
+                                },
+                                cache: false,
+                                success: function(html) {
+                                    console.log(html)
+                                }
+
+                            });
+                        })
+                    }
+                });
                 db.collection('products_temp').orderBy('name').get().then(products => {
                     if (products.length >= 1) {
                         let index = 0;
@@ -108,36 +138,6 @@
                                 .then((data) => {
                                     console.log(data);
                                     if (data.success == true) {
-                                        $.ajax({
-                                            url: "/api/requests",
-                                            type: 'GET',
-                                            dataType: 'json', // added data type
-                                            success: function(res) {
-                                                console.log(res);
-                                                // alert(res);
-                                                res.forEach(req =>{
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: SyncUrl +
-                                                            "api/syncRequest",
-                                                        data: {
-                                                            station_id: req.station_id,
-                                                            user_id: req.user_id,
-                                                            request_qty: req.request_qty,
-                                                            approved_qty: req.approved_qty,
-                                                            product_id: req.product_id,
-                                                            request_ref:req.request_ref,
-                                                            status: req.status
-                                                        },
-                                                        cache: false,
-                                                        success: function(html) {
-                                                            console.log(html)
-                                                        }
-
-                                                    });
-                                                })
-                                            }
-                                        });
                                         db.collection('products_temp').doc({
                                             name: product.name
                                         }).delete();
