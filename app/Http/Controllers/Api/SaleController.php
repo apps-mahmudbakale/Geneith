@@ -150,6 +150,28 @@ class SaleController extends Controller
         }
         // return response()->json($products);
     }
+
+    public function syncRequest(Request $request)
+    {
+        // dd($request->all());
+        $requests = DB::table('requests')
+                        ->updateOrInsert(
+                            ['request_ref' => $request->request_ref, 'station_id' => $request->station_id],
+                            [
+                                'product_id' => $request->product_id,
+                                'user_id' => $request->user_id,
+                                'request_qty' => $request->request_qty,
+                                'approved_qty' => $request->approved_qty,
+                                'status' => $request->status
+                            ]);
+        if($requests){
+            return response()->json([
+                'success' => true,
+                'message' => 'Activity successfully created.',
+            ]);
+        }
+        // return response()->json($products);
+    }
     /**
      * Update the specified resource in storage.
      *

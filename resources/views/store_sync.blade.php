@@ -108,54 +108,34 @@
                                 .then((data) => {
                                     console.log(data);
                                     if (data.success == true) {
-                                        // var csrf = document.querySelector(
-                                        //     'meta[name="csrf-token"]').content;
-                                        // $.ajax({
-                                        //     type: "POST",
-                                        //     url: "/synced",
-                                        //     data: {
-                                        //         _token: csrf,
-                                        //         invoice: sale.invoice,
-                                        //         product_id: sale.product_id
-                                        //     },
-                                        //     cache: false,
-                                        //     success: function(html) {
-                                        //         console.log(html)
-                                        //     }
-                                        // });
                                         $.ajax({
-                                            type: "GET",
                                             url: "/api/requests",
-                                            cache: false,
-                                            success: function(data) {
-                                                console.log(data)
-                                                // data.forEach(element => {
-                                                //     // $.ajax({
-                                                //     //     type: "POST",
-                                                //     //     url: SyncUrl +
-                                                //     //         "api/syncProducts",
-                                                //     //     data: {
-                                                //     //         station_id: element
-                                                //     //             .station_id,
-                                                //     //         quantity: element
-                                                //     //             .quantity,
-                                                //     //         product_id: element
-                                                //     //             .product_id
-                                                //     //     },
-                                                //     //     cache: false,
-                                                //     //     success: function(
-                                                //     //         html
-                                                //     //     ) {
-                                                //     //         console
-                                                //     //             .log(
-                                                //     //                 html
-                                                //     //             )
+                                            type: 'GET',
+                                            dataType: 'json', // added data type
+                                            success: function(res) {
+                                                console.log(res);
+                                                // alert(res);
+                                                res.forEach(req =>{
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: SyncUrl +
+                                                            "api/syncRequest",
+                                                        data: {
+                                                            station_id: req.station_id,
+                                                            user_id: req.user_id,
+                                                            request_qty: req.request_qty,
+                                                            approved_qty: req.approved_qty,
+                                                            product_id: req.product_id,
+                                                            request_ref:req.request_ref,
+                                                            status: req.status
+                                                        },
+                                                        cache: false,
+                                                        success: function(html) {
+                                                            console.log(html)
+                                                        }
 
-                                                //     //     }
-
-                                                //     // });
-                                                // })
-
+                                                    });
+                                                })
                                             }
                                         });
                                         db.collection('products_temp').doc({
