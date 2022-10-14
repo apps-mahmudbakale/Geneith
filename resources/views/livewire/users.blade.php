@@ -84,6 +84,10 @@
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         </form>
+                                                        @if($user->id != auth()->user()->id)
+                                                        <a href="{{route('app.reset-password', $user->id)}}" class="btn btn-warning btn-sm">
+                                                            <i class="fa fa-key"></i></a>
+                                                        @endif
                                                 </div>
                                             </td>
                                         </tr>

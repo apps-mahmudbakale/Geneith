@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserFormRequest;
 use App\Models\Station;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserFormRequest;
 
 class UserController extends Controller
 {
@@ -98,6 +99,24 @@ class UserController extends Controller
 
     }
 
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        // dd($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('app.users.index')->with('success', 'User Updated');
+
+
+    }
+
+    public function resetPasswordView($id)
+    {
+       $user = User::find($id);
+        return view('users.reset-password', compact('user'));
+
+
+    }
     /**
      * Remove the specified resource from storage.
      *

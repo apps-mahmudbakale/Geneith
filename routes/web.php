@@ -103,6 +103,8 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('sync', [DashboardController::class, 'sync'])->name('sync');
     Route::resource('users', UserController::class);
+    Route::post('reset-password/{id}', [UserController::class, 'resetPassword'])->name('users.reset');
+    Route::get('reset-password/{id}', [UserController::class, 'resetPasswordView'])->name('reset-password');
     Route::resource('roles', RoleController::class);
     Route::resource('stations', StationController::class);
     Route::resource('stores', StoreController::class);
