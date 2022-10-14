@@ -21,6 +21,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'store_name' => 'required',
             'store_address' => 'required',
+            'sell_margin' => 'required',
             'store_logo' => 'nullable|file|image',
 
         ]);
@@ -34,6 +35,7 @@ class SettingsController extends Controller
         $settings->store_name = $request->store_name;
         $settings->store_logo = $logo;
         $settings->store_address = $request->store_address;
+        $settings->sell_margin = $request->sell_margin;
         $settings->save();
         return back()->with('Store Settings Has Been Updated');
     }

@@ -61,6 +61,11 @@
                                                 <textarea class="form-control" rows="10" name="store_address">{{ $settings->store_address }}</textarea>
                                             </div>
                                             <div class="form-group">
+                                                Selling Margin
+                                                <input type="text" name="sell_margin" value="{{ $settings->sell_margin }}"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group">
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>

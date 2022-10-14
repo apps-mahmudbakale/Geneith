@@ -10,5 +10,6 @@ class CreateStoreSettings extends SettingsMigration
         $this->migrator->add('store.store_logo', '');
         $this->migrator->add('store.store_address', 'No.67 & 68 FLHE Arkilla SOKOTO');
         $this->migrator->add('store.currency', '&#8358;');
+        $this->migrator->add('store.sell_margin', '1.5');
     }
 }

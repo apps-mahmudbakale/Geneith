@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Store;
 use App\Models\Product;
+use App\Settings\StoreSettings;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -16,12 +17,13 @@ class ProductsImport implements ToCollection,  WithHeadingRow
         if(auth()->user()->hasRole('admin|store')){
             foreach ($rows as $row) 
             {
+                $settings = new StoreSettings;
                 $store = Store::where('name', $row['store'])->first();
                 Product::updateOrCreate(
                     ['store_id' => $store->id, 'name' => ucfirst($row['product'])],
                     [
                     'buying_price' => $row['cost'],
-                    'selling_price' => $row['cost'] * 1.5,
+                    'selling_price' => $row['cost'] * $settings->sell_margin,
                     'qty' => DB::raw('qty + '.$row['quantity']),
                     'expiry_date' => $row['expiry'],
                 ]);
