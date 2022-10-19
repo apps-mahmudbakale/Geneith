@@ -155,7 +155,7 @@
                           </ul>
                       </li>
                   @endcan
-                  @can('read-invoice')
+                  @can('read-invoices')
                       <li class="nav-item">
                           <a href="{{ route('app.invoices.index') }}" class="nav-link">
                               <i class="nav-icon fa fa-file-invoice"></i>
