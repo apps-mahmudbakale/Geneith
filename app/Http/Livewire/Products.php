@@ -39,6 +39,7 @@ class Products extends Base
                $products = DB::table('station_products')
                     ->join('products', 'products.id', '=', 'station_products.product_id')
                     ->where('products.name', 'like', '%' . $this->search . '%')
+                    ->where('station_products.station_id', '=', auth()->user()->station->id)
                     ->paginate(10);
     
                 return view(
