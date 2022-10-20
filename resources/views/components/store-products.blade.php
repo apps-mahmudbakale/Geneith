@@ -8,6 +8,8 @@
                         class="fa fa-file-import"></i> Import Products</a>
                     <a href="{{ route('app.products.create') }}" class="btn btn-success float-right"><i
                             class="fa fa-plus-circle"></i></a>
+                            <a href="{{ route('app.products.print') }}" class="btn btn-primary float-right"><i
+                                class="fa fa-print"></i></a>
                             
                 </div>
                 <!-- /.card-header -->

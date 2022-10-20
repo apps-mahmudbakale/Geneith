@@ -110,6 +110,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::resource('stores', StoreController::class);
     Route::resource('products', ProductController::class);
     Route::get('product/import', [ProductController::class, 'importView'])->name('products.import');
+    Route::get('product/print', [ProductController::class, 'print'])->name('products.print');
     Route::post('products/imports', [ProductController::class, 'import'])->name('import.products');
     Route::resource('requests', RequestsController::class);
     Route::post('requests/approve/{id}', [RequestsController::class, 'approve'])->name('requests.approve');

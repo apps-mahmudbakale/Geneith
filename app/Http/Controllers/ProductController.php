@@ -64,6 +64,12 @@ class ProductController extends Controller
     {
         return view('products.import');
     }
+
+    public function print()
+    {
+        $products = Product::all();
+        return view('products.print', compact('products'));
+    }
     /**
      * Display the specified resource.
      *
