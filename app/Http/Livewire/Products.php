@@ -49,6 +49,7 @@ class Products extends Base
             } else {
                 $products = DB::table('station_products')
                     ->join('products', 'products.id', '=', 'station_products.product_id')
+                    ->where('station_products.station_id', '=', auth()->user()->station->id)
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate($this->perPage);
                 return view(
