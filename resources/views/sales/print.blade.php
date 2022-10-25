@@ -125,7 +125,7 @@
             <br>{{ucfirst($user->name)}}
         </p>
         <p class="centered">Thanks for your purchase!
-            <br>Geneith Okma
+            <br>Okma
         </p>
         <div id="scissors">
             <div></div>

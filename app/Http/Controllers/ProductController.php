@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsSpecialImport;
 use App\Http\Requests\ProductsFormRequest;
 
 class ProductController extends Controller
@@ -60,9 +62,26 @@ class ProductController extends Controller
         return redirect()->route('app.products.index')->with('success', 'Products Imported');
     }
 
+    public function importSpecial(Request $request)
+    {
+        Excel::import(new ProductsSpecialImport, $request->file('csv')->store('files'));
+        return redirect()->route('app.products.index')->with('success', 'Products Imported');
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new ProductsExport(), 'products-'.date('m-d-Y').'.xlsx');
+        // return (new ProductsExport)->download('products-'.date('m-d-Y').'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
     public function importView()
     {
         return view('products.import');
+    }
+
+    public function importSpecialView()
+    {
+        return view('products.import-special');
     }
 
     public function print()

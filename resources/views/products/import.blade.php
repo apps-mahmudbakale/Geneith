@@ -43,6 +43,10 @@
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            @role('admin|store')
+                            <a href="{{ route('app.products.import-special-view') }}" class="btn btn-primary float-right"><i
+                                class="fa fa-file-import"></i> Import Special</a>
+                            @endrole
                         </div>
                     </form>
                 </div>

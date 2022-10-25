@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Requests;
+use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 

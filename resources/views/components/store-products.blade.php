@@ -4,12 +4,14 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Products</h3>
+                    <a href="{{ route('app.products.create') }}" class="btn btn-success float-right"><i
+                        class="fa fa-plus-circle"></i></a>
                     <a href="{{ route('app.products.import') }}" class="btn btn-primary float-right"><i
                         class="fa fa-file-import"></i> Import Products</a>
-                    <a href="{{ route('app.products.create') }}" class="btn btn-success float-right"><i
-                            class="fa fa-plus-circle"></i></a>
-                            <a href="{{ route('app.products.print') }}" class="btn btn-primary float-right"><i
-                                class="fa fa-print"></i></a>
+                            <a href="{{ route('app.products.print') }}" class="btn btn-info float-right"><i
+                                class="fa fa-print"></i> Print Products</a>
+                                <a href="{{ route('app.export.products') }}" class="btn btn-secondary float-right"><i
+                                    class="fa fa-file-excel"></i> Export Products</a>
                             
                 </div>
                 <!-- /.card-header -->
