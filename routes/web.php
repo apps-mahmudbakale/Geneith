@@ -139,5 +139,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::post('settings', [SettingsController::class, 'updateStoreSettings'])->name('update.store.settings');
     Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
     Route::get('request/exports-all', [RequestsController::class, 'exportsAll'])->name('requests.exports.all');
+    Route::get('request/import-view', [RequestsController::class, 'importView'])->name('requests.import.view');
+    Route::post('request/import', [RequestsController::class, 'import'])->name('request.import');
 });
 

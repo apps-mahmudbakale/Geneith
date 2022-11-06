@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Requests;
 use Illuminate\Http\Request;
+use App\Imports\RequestImport;
 use App\Exports\RequestsExport;
 use App\Exports\RequestAllExport;
 use Illuminate\Support\Facades\DB;
@@ -127,6 +128,16 @@ class RequestsController extends Controller
         //
     }
 
+    public function import(Request $request)
+    {
+        Excel::import(new RequestImport, $request->file('csv')->store('files'));
+        return redirect()->route('app.requests.index')->with('success', 'Requests Imported');
+    }
+
+    public function importView()
+    {
+        return view('requests.import');
+    }
 
     public function exportsAll(){
 

@@ -7,6 +7,8 @@
                     @role('admin')
                     <a href="{{ route('app.requests.exports.all') }}" class="btn btn-secondary float-right"><i
                         class="fa fa-file-excel"></i> Export All Requests</a>
+                        <a href="{{ route('app.requests.import.view') }}" class="btn btn-primary float-right"><i
+                            class="fa fa-file-upload"></i> Import Requests</a>
                     @endrole
                 </div>
                 <!-- /.card-header -->
