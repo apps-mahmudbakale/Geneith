@@ -39,6 +39,7 @@ class RequestsPerStationSheet implements FromCollection, WithHeadings, WithTitle
                 ->join('products', 'requests.product_id', '=', 'products.id')
                 ->join('stations', 'requests.station_id', '=', 'stations.id')
                 ->where('requests.station_id', $this->id)
+                ->where('requests.status', 'approved')
                 ->get();
         return $requestAll;
     }
