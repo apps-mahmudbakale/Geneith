@@ -138,5 +138,6 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::resource('settings', SettingsController::class)->except('store','update', 'edit', 'show', 'destroy');
     Route::post('settings', [SettingsController::class, 'updateStoreSettings'])->name('update.store.settings');
     Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
+    Route::get('request/exports-all', [RequestsController::class, 'exportsAll'])->name('requests.exports.all');
 });
 

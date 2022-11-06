@@ -4,6 +4,10 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Requests</h3>
+                    @role('admin')
+                    <a href="{{ route('app.requests.exports.all') }}" class="btn btn-secondary float-right"><i
+                        class="fa fa-file-excel"></i> Export All Requests</a>
+                    @endrole
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

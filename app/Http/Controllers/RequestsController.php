@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Requests;
 use Illuminate\Http\Request;
 use App\Exports\RequestsExport;
+use App\Exports\RequestAllExport;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -126,6 +127,11 @@ class RequestsController extends Controller
         //
     }
 
+
+    public function exportsAll(){
+
+      return Excel::download(new RequestAllExport(), 'AllRequests.xlsx');
+    }
     /**
      * Remove the specified resource from storage.
      *
