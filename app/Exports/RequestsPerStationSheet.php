@@ -26,14 +26,16 @@ class RequestsPerStationSheet implements FromCollection, WithHeadings, WithTitle
             'Product',
             'Approved Quantity',
             'Buying Price',
-            'Selling Price'
+            'Selling Price',
+            'Total',
+            'Gross'
         ];
     }
     
     public function collection()
     {
        $requestAll = DB::table('requests')
-                ->select('products.name as product', 'requests.request_qty', 'products.buying_price', 'products.selling_price')
+                ->select('products.name as product', 'requests.request_qty', 'products.buying_price', 'products.selling_price', DB::raw('requests.approved_qty * products.selling_price'), DB::raw('products.selling_price - products.buying_price'))
                 ->join('products', 'requests.product_id', '=', 'products.id')
                 ->join('stations', 'requests.station_id', '=', 'stations.id')
                 ->where('requests.station_id', $this->id)
