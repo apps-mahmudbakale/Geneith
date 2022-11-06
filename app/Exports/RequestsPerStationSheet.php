@@ -23,7 +23,6 @@ class RequestsPerStationSheet implements FromCollection, WithHeadings, WithTitle
     public function headings(): array
     {
         return [
-            'Station',
             'Product',
             'Approved Quantity',
             'Buying Price',
@@ -34,7 +33,7 @@ class RequestsPerStationSheet implements FromCollection, WithHeadings, WithTitle
     public function collection()
     {
        $requestAll = DB::table('requests')
-                ->select('stations.name as station','products.name as product', 'requests.request_qty', 'products.buying_price', 'products.selling_price')
+                ->select('products.name as product', 'requests.request_qty', 'products.buying_price', 'products.selling_price')
                 ->join('products', 'requests.product_id', '=', 'products.id')
                 ->join('stations', 'requests.station_id', '=', 'stations.id')
                 ->where('requests.station_id', $this->id)
