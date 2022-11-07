@@ -13,9 +13,11 @@ class UserSales extends Component
      */
 
     public $sales;
-    public function __construct($sales)
+    public $sold;
+    public function __construct($sales, $sold)
     {
         $this->sales = $sales;
+        $this->sold = $sold;
     }
 
     /**

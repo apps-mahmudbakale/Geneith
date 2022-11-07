@@ -34,11 +34,10 @@
                                             <th>S/N</th>
                                             <th>Invoice</th>
                                             <th>Product Name</th>
-                                            <th>Quantity</th>
+                                            <th>Qty Sold</th>
                                             <th>Amount</th>
-                                            <th>Sold By</th>
+                                            <th>Qty Remaining</th>
                                             <th>Sold Date</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,46 +47,23 @@
                                             <td>{{$sale->invoice}}</td>
                                             <td>{{$sale->product}}</td>
                                             <td>{{$sale->qty}}</td>
-                                            <td>{{$sale->amount}}</td>
-                                            <td>{{$sale->user}}</td>
+                                            <td>&#8358; {{number_format($sale->amount)}}</td>
+                                            <td>{{$sale->remaining}}</td>
                                             <td>{{\Carbon\Carbon::parse($sale->created_at)->diffForHumans()}}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                        <button class="btn btn-danger btn-sm" id="del{{ $sale->id }}"
-                                                            data-value="{{ $sale->id }}"><i class="fa fa-trash"></i></button>
-                                                        <script>
-                                                            document.querySelector('#del{{ $sale->id }}').addEventListener('click', function(e) {
-                                                                // alert(this.getAttribute('data-value'));
-                                                                Swal.fire({
-                                                                    title: 'Are you sure?',
-                                                                    text: "You won't be able to revert this!",
-                                                                    icon: 'warning',
-                                                                    showCancelButton: true,
-                                                                    confirmButtonColor: '#3085d6',
-                                                                    cancelButtonColor: '#d33',
-                                                                    confirmButtonText: 'Yes, delete it!'
-                                                                }).then((result) => {
-                                                                    if (result.isConfirmed) {
-                                                                        document.getElementById('del#'+this.getAttribute('data-value')).submit();
-                                                                        // Swal.fire(
-                                                                        //     'Deleted!',
-                                                                        //     'Your file has been deleted.',
-                                                                        //     'success'
-                                                                        // )
-                                                                    }
-                                                                })
-                                                            })
-                                                        </script>
-                                                        <form id="del#{{ $sale->id }}"
-                                                            action="{{ route('app.sales.destroy', $sale->id) }}" method="POST"
-                                                             style="display: inline-block;">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        </form>
-                                                </div>
-                                            </td>
                                         </tr>
                                             @endforeach
+                                            <tr>
+                                                <td><strong style="font-size: 16px; color: #222222;">Total: </strong></td>
+                                                <td><strong style="font-size: 16px; color: #222222;">{!! app(App\Settings\StoreSettings::class)->currency !!}  <span
+                                                            id="total">{{number_format((int)$sold)}}</span></strong>
+                                                </td>
+                                                <td><strong style="font-size: 16px; color: #222222;"><span id="text">
+                                                            <?php $words = new NumberFormatter('En', NumberFormatter::SPELLOUT); ?>
+                                                            {{ strtoupper($words->format((float)$sold)) . ' NAIRA ONLY' }}
+                                                        </span>
+                                                    </strong>
+                                                </td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
