@@ -152,6 +152,12 @@
                                       <p>Custom Report</p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                <a href="{{ route('app.monthly.report.view') }}" class="nav-link">
+                                    <i class="fa fa-clock nav-icon"></i>
+                                    <p>Monthly Report</p>
+                                </a>
+                            </li>
                           </ul>
                       </li>
                   @endcan

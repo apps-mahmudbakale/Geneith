@@ -58,9 +58,14 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
+                            @if ($status == 'pending')
                             <button type="submit" class="btn btn-success">Approve Request</button>
+                            @endif
                         </div>
                     </form>
+                        @if($status == 'approved')
+                         <a href="{{route('app.requests.exports.one', $ref)}}" style="color:#fff;" class="btn btn-success">Export Request</a>
+                        @endif
                         @else
                         <div class="card-body">
                         <table class="table">
@@ -87,9 +92,11 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
+                        @role('user')
                         @if ($status == 'approved')
                         <a href="{{route('app.requests.acknowledge', $ref)}}" class="btn btn-success text-white">Acknowledge</a>
                         @endif
+                        @endrole
                     </div>
                 </div>
                 <!-- /.card -->

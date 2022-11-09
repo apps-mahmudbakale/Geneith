@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Imports\RequestImport;
 use App\Exports\RequestsExport;
 use App\Exports\RequestAllExport;
+use App\Exports\RequestOneExport;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -143,6 +144,11 @@ class RequestsController extends Controller
 
       return Excel::download(new RequestAllExport(), 'AllRequests.xlsx');
     }
+
+    public function exportsOne($ref){
+        //  dd($ref);
+        return Excel::download(new RequestOneExport($ref), 'IndividualRequests-'.$ref.'.xlsx');
+      }
     /**
      * Remove the specified resource from storage.
      *

@@ -71,4 +71,27 @@ class CustomReport
             ];
             
     }
+
+    public function monthlyReport(){
+        $report = DB::table('requests')
+        ->selectRaw('DISTINCT products.name as product')
+        ->join('products', 'requests.product_id', '=', 'products.id')
+        ->join('stations', 'requests.station_id', '=', 'stations.id')
+        ->join('station_products', 'stations.id', '=', 'station_products.station_id')
+        ->where('stations.id', '1')
+        ->where('requests.status', 'approved')
+        // ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+        ->get()->toArray();
+        $reports = DB::table('requests')
+        ->selectRaw('DISTINCT station_products.quantity as quantity, requests.approved_qty, (requests.approved_qty) - (station_products.quantity) as sold, products.buying_price, products.selling_price, requests.approved_qty * products.buying_price, requests.approved_qty * products.selling_price, (requests.approved_qty * products.selling_price) - (requests.approved_qty * products.buying_price)')
+        ->join('products', 'requests.product_id', '=', 'products.id')
+        ->join('stations', 'requests.station_id', '=', 'stations.id')
+        ->join('station_products', 'stations.id', '=', 'station_products.station_id')
+        ->where('stations.id', '1')
+        ->where('requests.status', 'approved')
+        // ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+        ->get()->toArray();
+        
+        return array_merge($report, $reports);
+    }
 }

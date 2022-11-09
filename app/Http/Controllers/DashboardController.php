@@ -9,8 +9,10 @@ use App\Models\Product;
 use App\Models\Station;
 use Illuminate\Http\Request;
 use App\Classes\CustomReport;
+use App\Exports\MonthlyReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -86,6 +88,19 @@ class DashboardController extends Controller
         $stations = Station::get();
         $users = User::where('name', '!=','Admin')->get();
             return view('reports.custom', compact('products', 'stations', 'users'));
+    }
+
+    public function monthlyReportView()
+    {
+        $stations = Station::get();
+            return view('reports.monthly', compact('stations'));
+    }
+
+    public function monthlyReport(Request $request)
+    {
+        return Excel::download(new  MonthlyReport($request->station, $request->from, $request->to), 'Report.xlsx');
+        // dd($request->all());
+        
     }
     public function customReport(Request $request, CustomReport $report)
     {
