@@ -29,9 +29,6 @@ class MonthlyReport implements FromCollection, WithHeadings
             'Selling Price',
             'Qunatity Sold',
             'Quantity Remaining',
-            'Total Cost Price of Goods Sold',
-            'Total Selling Price of Goods Sold',
-            'Gross'
         ];
     }
     /**
@@ -40,16 +37,16 @@ class MonthlyReport implements FromCollection, WithHeadings
     public function collection()
     {
         $report = DB::table('requests')
-        ->selectRaw('DISTINCT products.name as product, requests.approved_qty, products.buying_price, products.selling_price, ABS((requests.approved_qty) - (station_products.quantity)) as sold, station_products.quantity as remaining, products.buying_price * ABS((requests.approved_qty) - (station_products.quantity)), products.selling_price * ABS((requests.approved_qty) - (station_products.quantity)), (products.selling_price * ABS((requests.approved_qty) - (station_products.quantity))) - (products.buying_price * ABS((requests.approved_qty) - (station_products.quantity)))')
+        ->selectRaw('DISTINCT products.name as product, requests.approved_qty, products.buying_price, products.selling_price, ABS((requests.approved_qty) - (station_products.quantity)) as sold, station_products.quantity as remaining')
         ->join('products', 'requests.product_id', '=', 'products.id')
         ->join('stations', 'requests.station_id', '=', 'stations.id')
+        ->join('sales', 'sales.station_id', '=', 'stations.id')
         ->join('station_products', 'stations.id', '=', 'station_products.station_id')
-        ->join('sales', 'sales.product_id', '=', 'station_products.product_id')
-        ->where('requests.station_id', $this->station)
+        ->where('requests.station_id', '1')
         ->where('requests.status', 'approved')
-        ->whereRaw('sales.created_at BETWEEN date('.$this->fromDate.') AND date('.$this->toDate.')')
+        ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
         ->get();
-
         return $report;
+        // dd($this->fromDate);
     }
 }
