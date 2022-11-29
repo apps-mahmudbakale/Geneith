@@ -43,11 +43,11 @@ class MonthlyReport implements FromCollection, WithHeadings
         ->selectRaw('DISTINCT products.name as product, requests.approved_qty, products.buying_price, products.selling_price, ABS((requests.approved_qty) - (station_products.quantity)) as sold, station_products.quantity as remaining, products.buying_price * ABS((requests.approved_qty) - (station_products.quantity)), products.selling_price * ABS((requests.approved_qty) - (station_products.quantity)), (products.selling_price * ABS((requests.approved_qty) - (station_products.quantity))) - (products.buying_price * ABS((requests.approved_qty) - (station_products.quantity)))')
         ->join('products', 'requests.product_id', '=', 'products.id')
         ->join('stations', 'requests.station_id', '=', 'stations.id')
-        ->join('sales', 'sales.station_id', '=', 'stations.id')
         ->join('station_products', 'stations.id', '=', 'station_products.station_id')
-        ->where('requests.station_id', '1')
+        ->join('sales', 'sales.product_id', '=', 'station_products.product_id')
+        ->where('requests.station_id', $this->station)
         ->where('requests.status', 'approved')
-        ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+        ->whereRaw('sales.created_at BETWEEN date('.$this->fromDate.') AND date('.$this->toDate.')')
         ->get();
 
         return $report;
