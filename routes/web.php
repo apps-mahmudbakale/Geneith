@@ -32,8 +32,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function (){
-    $report = new CustomReport();
-    return $report->monthlyReport();
+    $report = DB::table('requests')
+    ->select(DB::raw('DISTINCT products.name as product, requests.approved_qty, products.buying_price, products.selling_price'), DB::raw('SUM(sales.qty) as sold'))
+    ->join('products', 'requests.product_id', '=', 'products.id')
+    ->join('stations', 'requests.station_id', '=', 'stations.id')
+    ->join('sales', 'sales.station_id', '=', 'stations.id')
+    ->join('station_products', 'stations.id', '=', 'station_products.station_id')
+    ->where('requests.station_id', '1')
+    ->where('requests.status', 'approved')
+    ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+    ->toSql();
+
+    return $report;
 
 });
 Route::get('syncData', [SaleController::class, 'store']);
