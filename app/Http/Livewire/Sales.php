@@ -46,8 +46,9 @@ class Sales extends Base
                         ->where('sales.user_id', auth()->user()->id)
                         ->first();
                 $sales = DB::table('sales')
-                ->select('sales.*','products.name as product','products.qty as remaining', 'stations.name as station')
+                ->select('sales.*','products.name as product','station_products.quantity as remaining', 'stations.name as station')
                     ->join('products', 'products.id', '=', 'sales.product_id')
+                    ->join('station_products', 'station_products.product_id', '=', 'sales.product_id')
                     ->join('stations', 'stations.id', '=', 'sales.station_id')
                     ->join('users', 'users.id', '=', 'sales.user_id')
                     ->where('sales.station_id', auth()->user()->station->id)
@@ -66,12 +67,13 @@ class Sales extends Base
                                 ->first();
                                 // dd($sold->total);
                 $sales = DB::table('sales')
-                    ->select('sales.*','products.name as product','products.qty as remaining', 'stations.name as station')
-                    ->join('products', 'products.id', '=', 'sales.product_id')
-                    ->join('stations', 'stations.id', '=', 'sales.station_id')
-                    ->join('users', 'users.id', '=', 'sales.user_id')
-                    ->where('sales.station_id', auth()->user()->station->id)
-                    ->where('sales.user_id', auth()->user()->id)
+                ->select('sales.*','products.name as product','station_products.quantity as remaining', 'stations.name as station')
+                ->join('products', 'products.id', '=', 'sales.product_id')
+                ->join('station_products', 'station_products.product_id', '=', 'sales.product_id')
+                ->join('stations', 'stations.id', '=', 'sales.station_id')
+                ->join('users', 'users.id', '=', 'sales.user_id')
+                ->where('sales.station_id', auth()->user()->station->id)
+                ->where('sales.user_id', auth()->user()->id)
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate($this->perPage);
                 return view(
