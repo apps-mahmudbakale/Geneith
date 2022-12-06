@@ -43,7 +43,7 @@ $toDate = '2022-11-18';
         ->join('station_products', 'stations.id', '=', 'station_products.station_id')
         ->where('requests.station_id', $station)
         ->where('requests.status', 'approved')
-        ->whereRaw('sales.created_at BETWEEN date('.$fromDate.') AND date('.$toDate.')')
+        ->whereRaw('sales.created_at BETWEEN date("'.$fromDate.'") AND date("'.$toDate.'")')
     ->toSql();
 
     return $report;
