@@ -149,14 +149,21 @@ class RequestsController extends Controller
         //  dd($ref);
         return Excel::download(new RequestOneExport($ref), 'IndividualRequests-'.$ref.'.xlsx');
       }
+
+    //   public function deleteRequest($ref){
+    //     DB::table('requests')->where('request_ref', $ref)->delete();
+       
+    //   }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Requests  $requests
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requests $requests)
+    public function destroy($ref)
     {
-        //
+        DB::table('requests')->where('request_ref', $ref)->delete();
+        return redirect()->route('app.requests.index')->with('success', 'Request Deleted');
+        // dd($ref);
     }
 }
