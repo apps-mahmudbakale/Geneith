@@ -32,15 +32,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function (){
+    $station = 1;
+$fromDate = '2022-10-18';
+$toDate = '2022-11-18';
     $report = DB::table('requests')
         ->selectRaw('DISTINCT products.name as product, requests.approved_qty, products.buying_price, products.selling_price, ABS((requests.approved_qty) - (station_products.quantity)) as sold, station_products.quantity as remaining')
         ->join('products', 'requests.product_id', '=', 'products.id')
         ->join('stations', 'requests.station_id', '=', 'stations.id')
         ->join('sales', 'sales.station_id', '=', 'stations.id')
         ->join('station_products', 'stations.id', '=', 'station_products.station_id')
-        ->where('requests.station_id', '1')
+        ->where('requests.station_id', $station)
         ->where('requests.status', 'approved')
-        ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+        ->whereRaw('sales.created_at BETWEEN date('.$fromDate.') AND date('.$toDate.')')
     ->toSql();
 
     return $report;
