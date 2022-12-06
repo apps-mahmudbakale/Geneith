@@ -42,9 +42,9 @@ class MonthlyReport implements FromCollection, WithHeadings
         ->join('stations', 'requests.station_id', '=', 'stations.id')
         ->join('sales', 'sales.station_id', '=', 'stations.id')
         ->join('station_products', 'stations.id', '=', 'station_products.station_id')
-        ->where('requests.station_id', '1')
+        ->where('requests.station_id', $this->status)
         ->where('requests.status', 'approved')
-        ->whereRaw('sales.created_at BETWEEN date("2022-10-07") AND date("2022-11-07")')
+        ->whereRaw('sales.created_at BETWEEN date('.$this->fromDate.') AND date('.$this->toDate.')')
         ->get();
         return $report;
         // dd($this->fromDate);
